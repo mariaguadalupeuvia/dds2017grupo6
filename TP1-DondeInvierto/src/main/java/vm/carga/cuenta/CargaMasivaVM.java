@@ -8,6 +8,7 @@ public class CargaMasivaVM {
 	
 	public void Procesar(){
 		String rutaArchivo = "C:/Users/HUCHIHA/Documents/prueba_excel.xls";
+		
 		DatosExcelCargaMasiva resultado = new DatosExcelCargaMasiva(); 
 		resultado = ProcesarArchivoExcel.CargarInformaciondeExcel(rutaArchivo);
 		System.out.print(resultado.empresas().size());

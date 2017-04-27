@@ -1,10 +1,8 @@
-package vm;
+package dominio;
 
 import org.uqbar.commons.utils.Observable;
 
 @Observable
-public class MenuViewModel 
-{
+public class CuentaEmpresa {
 
-	
 }
