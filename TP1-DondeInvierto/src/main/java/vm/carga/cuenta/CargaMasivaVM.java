@@ -8,16 +8,24 @@ public class CargaMasivaVM {
 	
 	public void Procesar(){
 		String rutaArchivo = "C:/Users/HUCHIHA/Documents/prueba_excel.xls";
-		
 		DatosExcelCargaMasiva resultado = new DatosExcelCargaMasiva(); 
 		resultado = ProcesarArchivoExcel.CargarInformaciondeExcel(rutaArchivo);
+		
 		System.out.print(resultado.empresas().size());
-		resultado.empresas().forEach(empresa->System.out.print(empresa));
+		System.out.println();
+		resultado.getRegistros("sabe1").forEach(registro->System.out.print(registro.getNombreCuenta()+"  "+registro.getPeriodo()));
+		System.out.println();
+		resultado.getRegistros("sabe1","sabe2").forEach(registro->System.out.print(registro.getNombreCuenta()+"  "+registro.getPeriodo()));
+		/*
+		System.out.println();
 		System.out.print(resultado.periodos().size());
+		System.out.println();
 		resultado.periodos().forEach(periodo->System.out.print(periodo));
-		System.out.print(resultado.cuentas().size());
-		resultado.cuentas().forEach(cuenta->System.out.print(cuenta));
-		System.out.print(resultado.getRegistros().size());
+		System.out.println();
+		System.out.print(resultado.Nombrecuentas().size());
+		System.out.println();
+		resultado.Nombrecuentas().forEach(cuenta->System.out.print(cuenta));
+		*/
 	}
 
 	public String getNombredelArchivo() {
