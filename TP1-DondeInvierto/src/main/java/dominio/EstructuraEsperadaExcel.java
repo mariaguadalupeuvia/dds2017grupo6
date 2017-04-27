@@ -56,4 +56,13 @@ public class EstructuraEsperadaExcel {
 	            break;
 		}
 	}
+	
+	public EstructuraEsperadaExcel clonarDatos(EstructuraEsperadaExcel Registro){
+		EstructuraEsperadaExcel RegistroClonado = new EstructuraEsperadaExcel();
+			RegistroClonado.setEmpresa(new String(Registro.getEmpresa()));
+			RegistroClonado.setPeriodo(new String(Registro.getPeriodo()));
+			RegistroClonado.setNombreCuenta(new String(Registro.getNombreCuenta()));
+			RegistroClonado.setValorCuenta(new Double(Registro.getValorCuenta()));
+		return RegistroClonado;
+	}
 }
