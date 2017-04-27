@@ -87,7 +87,7 @@ public class ProcesarArchivoExcel {
 				}
 				i++;
 			}
-			registrosProcesados.setRegistro(registro.clone());
+			registrosProcesados.setRegistro(registro);
 			System.out.println();
 		}
 		return registrosProcesados;
