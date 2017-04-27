@@ -40,7 +40,7 @@ public class CargaMasivaWindow extends Dialog<CargaMasivaVM>{
 	@Override
 	protected void addActions(Panel actions) 
 	{
-		new Button(actions).setCaption("Guardar").onClick(this::accept).setAsDefault();
+		new Button(actions).setCaption("Guardar").onClick(()->this.getModelObject().Procesar()).setAsDefault();
 		new Button(actions).setCaption("Cancelar").onClick(this::cancel);
 	}
 	@Override
