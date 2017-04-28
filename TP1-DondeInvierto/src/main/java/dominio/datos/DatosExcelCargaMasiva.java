@@ -1,18 +1,24 @@
-package dominio;
+package dominio.datos;
 
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class DatosExcelCargaMasiva {
-	private List<EstructuraEsperadaExcel> registros = new ArrayList<EstructuraEsperadaExcel>();
+import dominio.EstructuraEsperadaExcel;
+import interfases.IOrigenDatos;
 
-	public List<EstructuraEsperadaExcel> getRegistros() {
+public class DatosExcelCargaMasiva//implements IOrigenDatos
+{
+	private List<EstructuraEsperadaExcel> registros = new ArrayList<EstructuraEsperadaExcel>();
+	
+	public List<EstructuraEsperadaExcel> getRegistros() 
+	{
 		return registros;
 	}
 
-	public List<EstructuraEsperadaExcel> getRegistros(String empresa) {
+	public List<EstructuraEsperadaExcel> getRegistros(String empresa) 
+	{
 		return registros.stream()
 				.filter(registro -> registro.getEmpresa().equals(empresa))
 				.collect(Collectors.toList());
@@ -28,19 +34,19 @@ public class DatosExcelCargaMasiva {
 		registros.add(registro);
 	}
 
-	public List<String> empresas(){
+	public List<String> getEmpresas(){
 		List<String> empresas = new ArrayList<String>();
 		registros.forEach(registro->empresas.add(registro.getEmpresa()));
 		return eliminarDuplicadosLista(empresas);
 	}
 	
-	public List<String> periodos(){
+	public List<String> getPeriodos(){
 		List<String> periodos = new ArrayList<String>();
 		registros.forEach(registro->periodos.add(registro.getPeriodo()));
 		return eliminarDuplicadosLista(periodos);
 	}
 	
-	public List<String> Nombrecuentas(){
+	public List<String> getNombresCuentas(){
 		List<String> cuentas = new ArrayList<String>();
 		registros.forEach(cuenta->cuentas.add(cuenta.getNombreCuenta()));
 		return eliminarDuplicadosLista(cuentas);	
@@ -53,5 +59,6 @@ public class DatosExcelCargaMasiva {
 		lista.addAll(lhs);
 		return lista;
 	}
+
 	
 }

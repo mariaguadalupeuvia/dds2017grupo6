@@ -1,7 +1,7 @@
 package vm.carga.cuenta;
 
-import dominio.DatosExcelCargaMasiva;
 import dominio.ProcesarArchivoExcel;
+import dominio.datos.DatosExcelCargaMasiva;
 
 public class CargaMasivaVM {
 	private String nombredelArchivo;
@@ -11,7 +11,7 @@ public class CargaMasivaVM {
 		DatosExcelCargaMasiva resultado = new DatosExcelCargaMasiva(); 
 		resultado = ProcesarArchivoExcel.CargarInformaciondeExcel(rutaArchivo);
 		
-		System.out.print(resultado.empresas().size());
+		System.out.print(resultado.getEmpresas().size());
 		System.out.println();
 		resultado.getRegistros("sabe1").forEach(registro->System.out.print(registro.getNombreCuenta()+"  "+registro.getPeriodo()));
 		System.out.println();

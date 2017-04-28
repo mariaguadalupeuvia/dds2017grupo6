@@ -1,12 +1,12 @@
 package vistas;
 
-import org.uqbar.arena.layout.HorizontalLayout;
 import org.uqbar.arena.layout.VerticalLayout;
 import org.uqbar.arena.widgets.Button;
 import org.uqbar.arena.widgets.Panel;
 import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
 
+import utils.Graficos;
 import vistas.carga.cuenta.MenuCargaCuentasWindow;
 import vistas.consulta.cuenta.ConsultaCuentaWindow;
 import vm.MenuPrincipalVM;
@@ -22,9 +22,10 @@ public class MenuPrincipalWindow extends SimpleWindow<MenuPrincipalVM>
 	@Override
 	protected void createFormPanel(Panel panelPrincipal) 
 	{
-		panelPrincipal.setLayout(new HorizontalLayout());
+		panelPrincipal.setLayout(new VerticalLayout());
 		
 		this.setTitle("Menu");
+		Graficos.graficarDolares(panelPrincipal);
 	}
 	
 	@Override
@@ -35,6 +36,7 @@ public class MenuPrincipalWindow extends SimpleWindow<MenuPrincipalVM>
 		new Button(botonera).setCaption("1. Carga de cuentas").onClick(this::carga).setWidth(200);
 
 		new Button(botonera).setCaption("2. Consulta de cuentas").onClick(this::consulta).setWidth(200);
+		Graficos.graficarBorde(botonera, 340);
 	}
 	
 	public void carga()

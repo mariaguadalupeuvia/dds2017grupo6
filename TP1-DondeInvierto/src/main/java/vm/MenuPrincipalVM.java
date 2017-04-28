@@ -1,5 +1,6 @@
 package vm;
 
-public class MenuPrincipalVM {
-
+public class MenuPrincipalVM 
+{	
+	
 }

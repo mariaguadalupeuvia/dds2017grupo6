@@ -9,6 +9,7 @@ import org.uqbar.arena.widgets.TextBox;
 import org.uqbar.arena.windows.Dialog;
 import org.uqbar.arena.windows.WindowOwner;
 
+import utils.Graficos;
 import vm.carga.cuenta.CargaMasivaVM;
 
 @SuppressWarnings("serial")
@@ -24,6 +25,7 @@ public class CargaMasivaWindow extends Dialog<CargaMasivaVM>{
 		setTitle("Carga masiva de cuentas");
 		
 		panelPrincipal.setLayout(new VerticalLayout());
+		Graficos.graficarDolares(panelPrincipal);
 		
 		GroupPanel formDatos = new GroupPanel(panelPrincipal);
 		formDatos.setTitle("Ruta de acceso del archivo:");
@@ -34,14 +36,20 @@ public class CargaMasivaWindow extends Dialog<CargaMasivaVM>{
 		
 		Panel panelVistaPrevia = new Panel(panelPrincipal);
 		panelVistaPrevia.setLayout(new HorizontalLayout());
-		new Button(panelVistaPrevia).setCaption("Vista Previa").setWidth(100);
+		new Button(panelVistaPrevia).setCaption("Vista Previa").onClick(this::buscarArchivo);
 	}
 	
 	@Override
 	protected void addActions(Panel actions) 
 	{
-		new Button(actions).setCaption("Guardar").onClick(()->this.getModelObject().Procesar()).setAsDefault();
-		new Button(actions).setCaption("Cancelar").onClick(this::cancel);
+		actions.setLayout(new VerticalLayout());
+		
+		Panel panel= new Panel(actions);
+		panel.setLayout(new HorizontalLayout());
+		
+		new Button(panel).setCaption("Guardar").onClick(()->this.getModelObject().Procesar()).setAsDefault();
+		new Button(panel).setCaption("Cancelar").onClick(this::cancel);
+		Graficos.graficarBorde(actions, 340);
 	}
 	@Override
 	protected void executeTask()
@@ -49,5 +57,9 @@ public class CargaMasivaWindow extends Dialog<CargaMasivaVM>{
 		//getModelObject()
 		
 		super.executeTask();
+	}
+	protected void buscarArchivo()
+	{
+
 	}
 }
