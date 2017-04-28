@@ -77,16 +77,6 @@ public class DatosTxt implements FormatoDatos
 	    periodos.add(Integer.parseInt(datos[2]));
 	    cuentas.add(new Cuenta(datos[0], datos[1], Integer.parseInt(datos[2]), Double.parseDouble(datos[3])));
 	}
-	
-	
-//	private List<Integer> eliminarDuplicadosLista(List<Integer> periodos2)
-//	{
-//		LinkedHashSet<Integer> lhs = new LinkedHashSet<Integer>();
-//		lhs.addAll(periodos2);
-//		periodos2.clear();
-//		periodos2.addAll(lhs);
-//		return periodos2;
-//	}
 
 	@Override
 	public List<Cuenta> getCuentas() 
@@ -111,5 +101,4 @@ public class DatosTxt implements FormatoDatos
 	{
 		return periodos;
 	}
-
 }

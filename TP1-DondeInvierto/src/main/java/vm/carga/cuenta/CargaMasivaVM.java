@@ -48,5 +48,12 @@ public class CargaMasivaVM
 		
 		RepositorioPeriodos.agregarVarios(nuevosPeriodos);
 	}
-	
+
+	public FormatoDatos getDatos() {
+		return datos;
+	}
+
+	public void setDatos(FormatoDatos datos) {
+		this.datos = datos;
+	}	
 }

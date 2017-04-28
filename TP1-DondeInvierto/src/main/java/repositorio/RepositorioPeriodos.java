@@ -1,7 +1,9 @@
 package repositorio;
 
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 public class RepositorioPeriodos {
 
@@ -27,6 +29,11 @@ public class RepositorioPeriodos {
 	//PROPIEDADES
 	public static List<Integer> getPeriodos() 
 	{
+		Set<Integer> linkedHashSet = new LinkedHashSet<Integer>();
+		linkedHashSet.addAll(periodos);
+		periodos.clear();
+		periodos.addAll(linkedHashSet);
+		
 		return periodos;
 	}
 	

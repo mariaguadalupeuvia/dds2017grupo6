@@ -14,7 +14,7 @@ public class Fixture
 	{
 		//INICIALIZO TODOS LOS REPOSITORIOS
 		ArrayList<String>datosPruebaEmpresas = new ArrayList<String>(Arrays.asList("facebook", "twitter", "pinterest"));
-		ArrayList<String>datosPruebaNombresCuentas = new ArrayList<String>(Arrays.asList("ebitda","fds","cashflow", "margenes"));
+		ArrayList<String>datosPruebaNombresCuentas = new ArrayList<String>(Arrays.asList("ebidata","fds","cashflow", "margenes"));
 		ArrayList<Integer>datosPruebaPeriodos = new ArrayList<Integer>(Arrays.asList(2015,2016,2017));
 		
 		RepositorioCuentas.inicializarRepositorio();

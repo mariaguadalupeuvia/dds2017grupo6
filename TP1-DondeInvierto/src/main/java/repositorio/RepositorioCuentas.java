@@ -22,8 +22,26 @@ public class RepositorioCuentas
 	
 	public static List<Cuenta> filtrarCuentas(String empresa, String nombreCuenta,Integer periodo, Double valor) 
 	{
-		//ACA VA LA CONCIDION
-		return cuentas.stream().filter(c -> c.equals(c)).collect(Collectors.toList());
+		List<Cuenta> cuentasFiltradas = cuentas;
+		
+		if (empresa != null) 
+		{
+			cuentasFiltradas = cuentasFiltradas.stream().filter(cuenta -> cuenta.getEmpresa().equals(empresa))
+					.collect(Collectors.toList());
+		}
+		if (nombreCuenta != null)
+		{
+			cuentasFiltradas =  cuentasFiltradas.stream().filter(cuenta -> cuenta.getNombreCuenta().equals(nombreCuenta))
+					.collect(Collectors.toList());
+		}
+		if (periodo != 0)
+		{
+			cuentasFiltradas =  cuentasFiltradas.stream().filter(cuenta -> cuenta.getPeriodo().equals(periodo))
+					.collect(Collectors.toList());
+		}
+		
+		
+		return cuentasFiltradas;
 	}
 	
 	public static void agregarVarias(List<Cuenta> nuevasCuentas) 

@@ -18,10 +18,8 @@ public class Cuenta
 		this.valor = valor;
 	}
 	
-	public Cuenta() {
-		// TODO Auto-generated constructor stub
-	}
-
+	public Cuenta() { }
+ 
 	public String getEmpresa() {
 		return empresa;
 	}

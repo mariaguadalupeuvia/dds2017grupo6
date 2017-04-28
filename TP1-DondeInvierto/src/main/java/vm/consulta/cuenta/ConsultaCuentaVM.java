@@ -33,6 +33,7 @@ public class ConsultaCuentaVM
 
 	public void consultar() 
 	{
+		
 		cuentas = RepositorioCuentas.filtrarCuentas(empresaSeleccionada, nombreCuentaSeleccionada, periodoSeleccionado,valor);
 	}
 

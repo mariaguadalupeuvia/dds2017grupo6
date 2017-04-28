@@ -1,7 +1,9 @@
 package repositorio;
 
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 public class RepositorioEmpresas {
 
@@ -27,6 +29,11 @@ public class RepositorioEmpresas {
 	//PROPIEDADES
 	public static List<String> getEmpresas() 
 	{
+		Set<String> linkedHashSet = new LinkedHashSet<String>();
+		linkedHashSet.addAll(empresas);
+		empresas.clear();
+		empresas.addAll(linkedHashSet);
+		
 		return empresas;
 	}
 
