@@ -6,7 +6,6 @@ import org.uqbar.arena.widgets.Panel;
 import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
 
-import utils.Graficos;
 import vistas.carga.cuenta.MenuCargaCuentasWindow;
 import vistas.consulta.cuenta.ConsultaCuentaWindow;
 import vm.MenuPrincipalVM;
@@ -14,8 +13,8 @@ import vm.MenuPrincipalVM;
 @SuppressWarnings("serial")
 public class MenuPrincipalWindow extends SimpleWindow<MenuPrincipalVM>
 {
-	public MenuPrincipalWindow(WindowOwner parent) {
-		
+	public MenuPrincipalWindow(WindowOwner parent) 
+	{
 		super(parent, new MenuPrincipalVM());
 	}
 
@@ -25,7 +24,6 @@ public class MenuPrincipalWindow extends SimpleWindow<MenuPrincipalVM>
 		panelPrincipal.setLayout(new VerticalLayout());
 		
 		this.setTitle("Menu");
-		Graficos.graficarDolares(panelPrincipal);
 	}
 	
 	@Override
@@ -36,7 +34,6 @@ public class MenuPrincipalWindow extends SimpleWindow<MenuPrincipalVM>
 		new Button(botonera).setCaption("1. Carga de cuentas").onClick(this::carga).setWidth(200);
 
 		new Button(botonera).setCaption("2. Consulta de cuentas").onClick(this::consulta).setWidth(200);
-		Graficos.graficarBorde(botonera, 340);
 	}
 	
 	public void carga()
@@ -44,7 +41,8 @@ public class MenuPrincipalWindow extends SimpleWindow<MenuPrincipalVM>
 		SimpleWindow<?> ventana = new MenuCargaCuentasWindow(this);
 		ventana.open();
 	}
-	public void consulta(){
+	public void consulta()
+	{
 		SimpleWindow<?> ventana = new ConsultaCuentaWindow(this);
 		ventana.open();
 	}

@@ -1,34 +1,27 @@
 package dominio;
 
-public class Cuenta {
-	
-    //private int idCuenta;//Opcional, quizás nos sirva luego
+import org.uqbar.commons.utils.Observable;
+
+@Observable
+public class Cuenta 
+{
+	private String empresa;
     private String nombreCuenta;
-    private String empresa; //Por ahora es así
-	private double valor;
-    private int periodo; //Pensé en formato AAAAMM
+    private Integer periodo;
+	private Double valor;
 
-
-	/*public int getIdCuenta() {
-		return idCuenta;
-	}
-
-	public void setIdCuenta(int idCuenta) {
-		this.idCuenta = idCuenta;
-	}*/
-
-	
-
-	public String getNombreCuenta() {
-		return nombreCuenta;
-	}
-
-	public void setNombreCuenta(String nombreCuenta) {
+	public Cuenta(String empresa, String nombreCuenta, Integer periodo, Double valor)
+	{
+		this.empresa = empresa;
 		this.nombreCuenta = nombreCuenta;
+		this.periodo = periodo;
+		this.valor = valor;
 	}
 	
-	
-	
+	public Cuenta() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public String getEmpresa() {
 		return empresa;
 	}
@@ -36,26 +29,28 @@ public class Cuenta {
 	public void setEmpresa(String empresa) {
 		this.empresa = empresa;
 	}
-
-
 	
-	public double getValor() {
-		return valor;
-	}
-
-	public void setValor(double valor) {
-		this.valor = valor;
+	public String getNombreCuenta() {
+		return nombreCuenta;
 	}
 	
+	public void setNombreCuenta(String nombreCuenta) {
+		this.nombreCuenta = nombreCuenta;
+	}
 	
-	
-	public int getPeriodo() {
+	public Integer getPeriodo() {
 			return periodo;
 	}
 
-	public void setPeriodo(int periodo) {
+	public void setPeriodo(Integer periodo) {
 			this.periodo = periodo;
 	}
-
-
+	
+	public Double getValor() {
+		return valor;
+	}
+	
+	public void setValor(Double valor) {
+		this.valor = valor;
+	}
 }

@@ -12,9 +12,6 @@ import org.uqbar.arena.windows.Dialog;
 import org.uqbar.arena.windows.WindowOwner;
 
 import dominio.Cuenta;
-import dominio.Empresa;
-import dominio.Periodo;
-import utils.Graficos;
 import vm.carga.cuenta.CargaManualVM;
 
 @SuppressWarnings("serial")
@@ -31,26 +28,28 @@ public class CargaManualWindow extends Dialog<CargaManualVM>
 		setTitle("Carga manual de cuentas");
 		
 		panelPrincipal.setLayout(new VerticalLayout());
-		Graficos.graficarDolares(panelPrincipal);
 		
 		GroupPanel formDatos = new GroupPanel(panelPrincipal);
 		formDatos.setTitle("Datos de la cuenta");
 		formDatos.setLayout(new ColumnLayout(2));
 	
 		new Label(formDatos).setText("Empresa:");
-		Selector<Empresa> comboEmpresa = new Selector<Empresa>(formDatos);
+		Selector<Cuenta> comboEmpresa = new Selector<Cuenta>(formDatos);
+		comboEmpresa.bindValueToProperty("empresaSeleccionada");
 		comboEmpresa.bindItemsToProperty("empresas");
 		
 		new Label(formDatos).setText("Periodo:");
-		Selector<Periodo> comboPeriodo = new Selector<Periodo>(formDatos);
+		Selector<Cuenta> comboPeriodo = new Selector<Cuenta>(formDatos);
+		comboPeriodo.bindValueToProperty("periodoSeleccionado");
 		comboPeriodo.bindItemsToProperty("periodos");
 		
 		new Label(formDatos).setText("Cuenta:");
 		Selector<Cuenta> comboCuenta = new Selector<Cuenta>(formDatos);
+		comboCuenta.bindValueToProperty("nombreCuentaSeleccionada");
 		comboCuenta.bindItemsToProperty("nombresCuentas");
 		
 		new Label(formDatos).setText("Valor:");
-		new NumericField(formDatos);
+		new NumericField(formDatos).setWidth(100).bindValueToProperty("valor");
 	}
 	
 	@Override
@@ -58,13 +57,12 @@ public class CargaManualWindow extends Dialog<CargaManualVM>
 	{
 		new Button(actions).setCaption("Guardar").onClick(this::accept).setAsDefault();
 		new Button(actions).setCaption("Cancelar").onClick(this::cancel);
-		Graficos.graficarBorde(actions, 280);
 	}
 	
 	@Override
 	protected void executeTask()
 	{
-		//getModelObject()
+		getModelObject().guardarCuenta();
 		
 		super.executeTask();
 	}

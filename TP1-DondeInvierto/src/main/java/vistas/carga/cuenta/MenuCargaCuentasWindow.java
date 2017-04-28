@@ -7,7 +7,6 @@ import org.uqbar.arena.windows.Dialog;
 import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
 
-import utils.Graficos;
 import vm.carga.cuenta.MenuCargarCuentasVM;
 
 @SuppressWarnings("serial")
@@ -23,7 +22,6 @@ public class MenuCargaCuentasWindow extends SimpleWindow<MenuCargarCuentasVM>
 	protected void createFormPanel(Panel panelPrincipal) 
 	{
 		panelPrincipal.setLayout(new VerticalLayout());
-		Graficos.graficarDolares(panelPrincipal);
 		this.setTitle("Cargar cuentas");
 	}
 	
@@ -35,7 +33,6 @@ public class MenuCargaCuentasWindow extends SimpleWindow<MenuCargarCuentasVM>
 		new Button(botonera).setCaption("1.1 - Carga manual").onClick(this::cargaManual).setWidth(200);
 
 		new Button(botonera).setCaption("1.2 - Carga masiva").onClick(this::cargaMasiva).setWidth(200);
-		Graficos.graficarBorde(botonera, 340);
 	}
 	
 	public void cargaManual() {

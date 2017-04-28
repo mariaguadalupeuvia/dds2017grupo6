@@ -1,4 +1,4 @@
-package dominio.datos;
+package dominio.manejoDeArchivos.txt;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -6,25 +6,21 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.LinkedHashSet;
 import java.util.List;
 
 import javax.swing.JOptionPane;
 
-import interfases.IOrigenDatos;
+import dominio.Cuenta;
+import dominio.manejoDeArchivos.FormatoDatos;
 
-public class DatosTxt implements IOrigenDatos
+public class DatosTxt implements FormatoDatos
 {
 	private  List<String> empresas = new ArrayList<String>();
-	private  List<String> cuentas = new ArrayList<String>();
-	private  List<String> periodos = new ArrayList<String>();
-	private List<EstructuraEsperada> registros = new ArrayList<EstructuraEsperada>();
- 
-    public void cargarDatos()
-    {
-    	cargarDatosDe("archivoPruebas.txt");
-    }
+	private  List<String> nombresCuentas = new ArrayList<String>();
+	private  List<Integer> periodos = new ArrayList<Integer>();
+	private List<Cuenta> cuentas = new ArrayList<Cuenta>();
     
+	@Override
     public void cargarDatosDe(String rutaArchivoTxt)
     {
       File archivo = null;
@@ -77,38 +73,43 @@ public class DatosTxt implements IOrigenDatos
 	{
 	    String[] datos = registro.split(" "); 
 	    empresas.add(datos[0]);
-	    cuentas.add(datos[1]);
-	    periodos.add(datos[2]);
-	    registros.add(new EstructuraEsperada(datos[0], datos[2], datos[1], Double.parseDouble(datos[3])));
+	    nombresCuentas.add(datos[1]);
+	    periodos.add(Integer.parseInt(datos[2]));
+	    cuentas.add(new Cuenta(datos[0], datos[1], Integer.parseInt(datos[2]), Double.parseDouble(datos[3])));
 	}
 	
-	public List<String> getEmpresas()
+	
+//	private List<Integer> eliminarDuplicadosLista(List<Integer> periodos2)
+//	{
+//		LinkedHashSet<Integer> lhs = new LinkedHashSet<Integer>();
+//		lhs.addAll(periodos2);
+//		periodos2.clear();
+//		periodos2.addAll(lhs);
+//		return periodos2;
+//	}
+
+	@Override
+	public List<Cuenta> getCuentas() 
 	{
-		return eliminarDuplicadosLista(empresas);
+		return cuentas;
 	}
 	
-	public List<String> getPeriodos()
+	@Override
+	public List<String> getEmpresas() 
 	{
-		return eliminarDuplicadosLista(periodos);
-	}
-	
-	public List<String> getNombresCuentas()
-	{
-		return eliminarDuplicadosLista(cuentas);	
-	}
-	
-	private List<String> eliminarDuplicadosLista(List<String> lista)
-	{
-		LinkedHashSet<String> lhs = new LinkedHashSet<String>();
-		lhs.addAll(lista);
-		lista.clear();
-		lista.addAll(lhs);
-		return lista;
+		return empresas;
 	}
 
 	@Override
-	public List<EstructuraEsperada> getRegistros() 
+	public List<String> getNombresCuentas()
 	{
-		return registros;
+		return nombresCuentas;
 	}
+	
+	@Override
+	public List<Integer> getPeriodos() 
+	{
+		return periodos;
+	}
+
 }

@@ -13,10 +13,6 @@ import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
 
 import dominio.Cuenta;
-import dominio.Empresa;
-import dominio.Periodo;
-import dominio.datos.EstructuraEsperada;
-import utils.Graficos;
 import vm.consulta.cuenta.ConsultaCuentaVM;
 
 @SuppressWarnings("serial")
@@ -32,46 +28,43 @@ public class ConsultaCuentaWindow extends SimpleWindow<ConsultaCuentaVM>
 	{
 		setTitle("Consulta de cuentas");
 		panelPrincipal.setLayout(new VerticalLayout());
-		Graficos.graficarDolares(panelPrincipal);
 		
 		GroupPanel panelFiltrado = new GroupPanel(panelPrincipal);
 		panelFiltrado.setTitle("Filtrar datos");
 		panelFiltrado.setLayout(new ColumnLayout(2));
 		
 		new Label(panelFiltrado).setText("Empresa");
-		Selector<Empresa> comboEmpresa = new Selector<Empresa>(panelFiltrado);
+		Selector<Cuenta> comboEmpresa = new Selector<Cuenta>(panelFiltrado);
+		comboEmpresa.bindValueToProperty("empresaSeleccionada");
 		comboEmpresa.bindItemsToProperty("empresas");
 		
 		new Label(panelFiltrado).setText("Periodo");
-		Selector<Periodo> comboPeriodo = new Selector<Periodo>(panelFiltrado);
+		Selector<Cuenta> comboPeriodo = new Selector<Cuenta>(panelFiltrado);
+		comboPeriodo.bindValueToProperty("periodoSeleccionado");
 		comboPeriodo.bindItemsToProperty("periodos");
 		
 		new Label(panelFiltrado).setText("Cuenta");
 		Selector<Cuenta> comboCuenta = new Selector<Cuenta>(panelFiltrado);
+		comboCuenta.bindValueToProperty("nombreCuentaSeleccionada");
 		comboCuenta.bindItemsToProperty("nombresCuentas");
 		
-		Table<EstructuraEsperada> tablaCuentas = new Table<EstructuraEsperada>(panelPrincipal, EstructuraEsperada.class);
+		Table<Cuenta> tablaCuentas = new Table<Cuenta>(panelPrincipal, Cuenta.class).setNumberVisibleRows(5);
+		tablaCuentas.bindItemsToProperty("cuentas");
 		
-		tablaCuentas.setNumberVisibleRows(5);
-		tablaCuentas.bindItemsToProperty("registros");
-		
-		new Column<EstructuraEsperada>(tablaCuentas).setTitle("Empresa").setFixedSize(150).bindContentsToProperty("empresa");
-		new Column<EstructuraEsperada>(tablaCuentas).setTitle("Periodo").setFixedSize(100).bindContentsToProperty("periodo");
-		new Column<EstructuraEsperada>(tablaCuentas).setTitle("Cuenta").setFixedSize(100).bindContentsToProperty("nombreCuenta");
-		new Column<EstructuraEsperada>(tablaCuentas).setTitle("Valor").setFixedSize(80).bindContentsToProperty("valorCuenta");
-//		new Column<CuentaEmpresa>(tablaCuentas).setTitle("Empresa").setFixedSize(150).bindContentsToProperty("empresa");
-//		new Column<CuentaEmpresa>(tablaCuentas).setTitle("Periodo").setFixedSize(100).bindContentsToProperty("periodo");
-//		new Column<CuentaEmpresa>(tablaCuentas).setTitle("Cuenta").setFixedSize(100).bindContentsToProperty("cuenta");
-//		new Column<CuentaEmpresa>(tablaCuentas).setTitle("Valor").setFixedSize(80).bindContentsToProperty("valor");
-		
+		new Column<Cuenta>(tablaCuentas).setTitle("Empresa").setFixedSize(150).bindContentsToProperty("empresa");
+		new Column<Cuenta>(tablaCuentas).setTitle("Periodo").setFixedSize(100).bindContentsToProperty("periodo");
+		new Column<Cuenta>(tablaCuentas).setTitle("Cuenta").setFixedSize(100).bindContentsToProperty("nombreCuenta");
+		new Column<Cuenta>(tablaCuentas).setTitle("Valor").setFixedSize(80).bindContentsToProperty("valor");	
 	}
 	
 	@Override
 	protected void addActions(Panel actions) 
 	{
 		new Button(actions).setCaption("Consultar").onClick(this::consultar);
-		Graficos.graficarBorde(actions, 340);
 	}
 	
-	public void consultar() {}
+	public void consultar() 
+	{
+		getModelObject().consultar();
+	}
 }
