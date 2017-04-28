@@ -2,10 +2,14 @@ package dominio.datos;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
+
+import javax.swing.JOptionPane;
 
 import interfases.IOrigenDatos;
 
@@ -18,13 +22,18 @@ public class DatosTxt implements IOrigenDatos
  
     public void cargarDatos()
     {
+    	cargarDatosDe("archivoPruebas.txt");
+    }
+    
+    public void cargarDatosDe(String rutaArchivoTxt)
+    {
       File archivo = null;
       FileReader reader = null;
       BufferedReader buffer = null;
 
       try {
 
-         archivo = new File ("archivoPruebas.txt");
+         archivo = new File(rutaArchivoTxt);
          reader = new FileReader (archivo);
          buffer = new BufferedReader(reader);
 
@@ -35,10 +44,17 @@ public class DatosTxt implements IOrigenDatos
         	 separarRegistro(linea);
          }
       }
-      catch(Exception e)
+      catch(FileNotFoundException e)
       {
-         e.printStackTrace();
+    	  JOptionPane.showMessageDialog(null, "No se encontro el archivo de datos", "Error", JOptionPane.ERROR_MESSAGE);
+    	  e.printStackTrace();
       }
+      catch(IOException e)
+      {
+    	  JOptionPane.showMessageDialog(null, "Se produjo un error al acceder al archivo", "Error", JOptionPane.ERROR_MESSAGE);
+    	  e.printStackTrace();
+      }
+
       finally
       {
 
@@ -51,6 +67,7 @@ public class DatosTxt implements IOrigenDatos
          }
          catch (Exception e2)
          { 
+        	JOptionPane.showMessageDialog(null, "Se produjo un error al liberar el recurso usado para leer el archivo", "Error", JOptionPane.ERROR_MESSAGE);
             e2.printStackTrace();
          }
       }

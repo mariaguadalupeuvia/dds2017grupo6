@@ -11,4 +11,5 @@ public interface IOrigenDatos
 	public List<String> getNombresCuentas();
 	public void cargarDatos();
 	public List<EstructuraEsperada> getRegistros();
+	public void cargarDatosDe(String rutaArchivo);
 }
