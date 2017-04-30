@@ -30,10 +30,8 @@ public class DatosExcel implements FormatoDatos
 		try {
 			wb = new HSSFWorkbook(new FileInputStream(rutaDelArchivo));
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
