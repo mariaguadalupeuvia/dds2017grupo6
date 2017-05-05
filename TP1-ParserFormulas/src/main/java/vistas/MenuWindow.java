@@ -25,10 +25,19 @@ public class MenuWindow extends SimpleWindow<Formula> {
 		panelPrincipal.setLayout(new VerticalLayout());
 
 		Panel form1 = new Panel(panelPrincipal);
-		form1.setLayout(new HorizontalLayout());
+		form1.setLayout(new VerticalLayout());
 
-		new Label(form1).setText("Ingrese su formula =");
-		new TextBox(form1).setWidth(150).bindValueToProperty("formula");
+		Panel panel1 = new Panel(form1);
+		panel1.setLayout(new HorizontalLayout());
+		
+		new Label(panel1).setText("Nombre");
+		new TextBox(panel1).setWidth(150).bindValueToProperty("nombre");
+		
+		Panel panel2 = new Panel(form1);
+		panel2.setLayout(new HorizontalLayout());
+		new Label(panel2).setText("Ingrese su formula =");
+		new TextBox(panel2).setWidth(150).bindValueToProperty("formula");
+		new Label(panel2).setText("Ej: (12+6)/2;");
 
 	}
 
@@ -39,5 +48,7 @@ public class MenuWindow extends SimpleWindow<Formula> {
 	@Override
 	protected void addActions(Panel actionsPanel) {
 		new Button(actionsPanel).setCaption("Validar formula").onClick(this::validarFormula);
+		new Label(actionsPanel).setText("resultado:").bindValueToProperty("resultado");
+
 	}
 }
