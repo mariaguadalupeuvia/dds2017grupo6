@@ -1,4 +1,4 @@
-package vistas;
+package vistas.carga.indicador;
 
 import org.uqbar.arena.layout.HorizontalLayout;
 import org.uqbar.arena.layout.VerticalLayout;
@@ -9,18 +9,19 @@ import org.uqbar.arena.widgets.TextBox;
 import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
 
-import vm.Formula;
+import vm.carga.indicador.MenuCargaIndicadoresVM;
 
 @SuppressWarnings("serial")
-public class MenuWindow extends SimpleWindow<Formula> {
+public class MenuCargaIndicadoresWindow extends SimpleWindow<MenuCargaIndicadoresVM> 
+{
 
-	public MenuWindow(WindowOwner parent) {
-		super(parent, new Formula());
+	public MenuCargaIndicadoresWindow(WindowOwner parent) {
+		super(parent, new MenuCargaIndicadoresVM());
 	}
 
 	@Override
 	protected void createFormPanel(Panel panelPrincipal) {
-		this.setTitle("Formulas");
+		this.setTitle("Indicador");
 
 		panelPrincipal.setLayout(new VerticalLayout());
 
@@ -29,10 +30,10 @@ public class MenuWindow extends SimpleWindow<Formula> {
 
 		Panel panel1 = new Panel(form1);
 		panel1.setLayout(new HorizontalLayout());
-		
+
 		new Label(panel1).setText("Nombre");
 		new TextBox(panel1).setWidth(150).bindValueToProperty("nombre");
-		
+
 		Panel panel2 = new Panel(form1);
 		panel2.setLayout(new HorizontalLayout());
 		new Label(panel2).setText("Ingrese su formula =");
@@ -48,7 +49,7 @@ public class MenuWindow extends SimpleWindow<Formula> {
 	@Override
 	protected void addActions(Panel actionsPanel) {
 		new Button(actionsPanel).setCaption("Validar formula").onClick(this::validarFormula);
-		new Label(actionsPanel).setText("resultado:").bindValueToProperty("resultado");
+		new Label(actionsPanel).setText("resultado:").setWidth(500).bindValueToProperty("resultado");
 
 	}
 }

@@ -7,6 +7,7 @@ import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
 
 import vistas.carga.cuenta.MenuCargaCuentasWindow;
+import vistas.carga.indicador.MenuCargaIndicadoresWindow;
 import vistas.consulta.cuenta.ConsultaCuentaWindow;
 import vm.MenuPrincipalVM;
 
@@ -34,11 +35,18 @@ public class MenuPrincipalWindow extends SimpleWindow<MenuPrincipalVM>
 		new Button(botonera).setCaption("1. Carga de cuentas").onClick(this::carga).setWidth(200);
 
 		new Button(botonera).setCaption("2. Consulta de cuentas").onClick(this::consulta).setWidth(200);
+		
+		new Button(botonera).setCaption("3. Carga de indicadores").onClick(this::cargaIndicador).setWidth(200);
 	}
 	
 	public void carga()
 	{
 		SimpleWindow<?> ventana = new MenuCargaCuentasWindow(this);
+		ventana.open();
+	}
+	public void cargaIndicador()
+	{
+		SimpleWindow<?> ventana = new MenuCargaIndicadoresWindow(this);
 		ventana.open();
 	}
 	public void consulta()
