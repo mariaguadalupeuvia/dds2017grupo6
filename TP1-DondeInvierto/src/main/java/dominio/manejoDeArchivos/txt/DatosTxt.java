@@ -5,21 +5,18 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.swing.JOptionPane;
+import dominio.interfases.OrigenDatos;
+import dominio.interfases.ParserDatos;
 
-import dominio.Cuenta;
-import dominio.manejoDeArchivos.FormatoDatos;
-
-public class DatosTxt implements FormatoDatos
+public class DatosTxt implements OrigenDatos
 {
-	private  List<String> empresas = new ArrayList<String>();
-	private  List<String> nombresCuentas = new ArrayList<String>();
-	private  List<Integer> periodos = new ArrayList<Integer>();
-	private List<Cuenta> cuentas = new ArrayList<Cuenta>();
-    
+	ParserDatos parser;
+	public DatosTxt(ParserDatos unParser)
+	{
+		this.parser = unParser;
+	}
+	
 	@Override
     public void cargarDatosDe(String rutaArchivoTxt)
     {
@@ -36,9 +33,9 @@ public class DatosTxt implements FormatoDatos
          String linea;
          while((linea = buffer.readLine())!=null)
          {
-            
-        	 separarRegistro(linea);
+        	 parser.parsear(linea);
          }
+         JOptionPane.showMessageDialog(null, "Se obtuvieron los datos con exito", "Informacion", JOptionPane.INFORMATION_MESSAGE);
       }
       catch(FileNotFoundException e)
       {
@@ -68,37 +65,5 @@ public class DatosTxt implements FormatoDatos
          }
       }
    }
-	
-	private void separarRegistro(String registro)
-	{
-	    String[] datos = registro.split(" "); 
-	    empresas.add(datos[0]);
-	    nombresCuentas.add(datos[1]);
-	    periodos.add(Integer.parseInt(datos[2]));
-	    cuentas.add(new Cuenta(datos[0], datos[1], Integer.parseInt(datos[2]), Double.parseDouble(datos[3])));
-	}
 
-	@Override
-	public List<Cuenta> getCuentas() 
-	{
-		return cuentas;
-	}
-	
-	@Override
-	public List<String> getEmpresas() 
-	{
-		return empresas;
-	}
-
-	@Override
-	public List<String> getNombresCuentas()
-	{
-		return nombresCuentas;
-	}
-	
-	@Override
-	public List<Integer> getPeriodos() 
-	{
-		return periodos;
-	}
 }

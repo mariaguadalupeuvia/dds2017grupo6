@@ -1,53 +1,27 @@
 package dominio;
 
-import org.uqbar.commons.utils.Observable;
-
-@Observable
 public class Cuenta 
 {
-	private String empresa;
-    private String nombreCuenta;
-    private Integer periodo;
+	private String codigo;
+    private String nombre;
 	private Double valor;
-
-	public Cuenta(String empresa, String nombreCuenta, Integer periodo, Double valor)
-	{
-		this.empresa = empresa;
-		this.nombreCuenta = nombreCuenta;
-		this.periodo = periodo;
-		this.valor = valor;
-	}
 	
-	public Cuenta() { }
- 
-	public String getEmpresa() {
-		return empresa;
-	}
-
-	public void setEmpresa(String empresa) {
-		this.empresa = empresa;
-	}
 	
-	public String getNombreCuenta() {
-		return nombreCuenta;
+	public String getCodigo() {
+		return codigo;
 	}
-	
-	public void setNombreCuenta(String nombreCuenta) {
-		this.nombreCuenta = nombreCuenta;
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
 	}
-	
-	public Integer getPeriodo() {
-			return periodo;
+	public String getNombre() {
+		return nombre;
 	}
-
-	public void setPeriodo(Integer periodo) {
-			this.periodo = periodo;
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
-	
 	public Double getValor() {
 		return valor;
 	}
-	
 	public void setValor(Double valor) {
 		this.valor = valor;
 	}

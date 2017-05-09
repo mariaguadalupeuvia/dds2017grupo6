@@ -3,7 +3,7 @@ package vm.carga.cuenta;
 import java.util.List;
 import org.uqbar.commons.utils.Observable;
 
-import dominio.Cuenta;
+import dominio.CuentaEmpresaPeriodo;
 import repositorio.RepositorioCuentas;
 import repositorio.RepositorioEmpresas;
 import repositorio.RepositorioNombresCuentas;
@@ -22,14 +22,14 @@ public class CargaManualVM {
 
 	public CargaManualVM() 
 	{
-		empresas = RepositorioEmpresas.getEmpresas();
+		empresas = RepositorioEmpresas.getNombresEmpresas();
 		periodos = RepositorioPeriodos.getPeriodos();
 		nombresCuentas = RepositorioNombresCuentas.getNombresCuentas();
 	}
 
 	public void guardarCuenta() 
 	{
-		RepositorioCuentas.agregar(new Cuenta(empresaSeleccionada, nombreCuentaSeleccionada, periodoSeleccionado, valor));
+		RepositorioCuentas.agregar(new CuentaEmpresaPeriodo(empresaSeleccionada, nombreCuentaSeleccionada, periodoSeleccionado, valor));
 	}
 
 	

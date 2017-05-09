@@ -1,4 +1,4 @@
-package vistas.consulta.cuenta;
+package vistas.consulta.indicador;
 
 import org.uqbar.arena.layout.ColumnLayout;
 import org.uqbar.arena.layout.HorizontalLayout;
@@ -14,25 +14,25 @@ import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
 
 import dominio.CuentaEmpresaPeriodo;
+import dominio.Indicador;
 import utils.Graficos;
-import vm.consulta.cuenta.ConsultaCuentaVM;
+import vm.consulta.indicador.ConsultaIndicadorVM;
 
 @SuppressWarnings("serial")
-public class ConsultaCuentaWindow extends SimpleWindow<ConsultaCuentaVM> 
+public class ConsultaIndicadorWindow extends SimpleWindow<ConsultaIndicadorVM> 
 {
-	public ConsultaCuentaWindow(WindowOwner owner) 
+	public ConsultaIndicadorWindow(WindowOwner owner) 
 	{
-		super(owner, new ConsultaCuentaVM());
+		super(owner, new ConsultaIndicadorVM());
 	}
 
 	@Override
 	protected void createFormPanel(Panel panelPrincipal) 
 	{
-		setTitle("Consulta de cuentas");
+		setTitle("Consulta de indicadores");
 		panelPrincipal.setLayout(new VerticalLayout());
 		Graficos.graficarDolares(panelPrincipal);
-		Graficos.graficarEspacio(panelPrincipal, 400);
-		
+		Graficos.graficarEspacio(panelPrincipal,340);
 		GroupPanel panelFiltrado = new GroupPanel(panelPrincipal);
 		panelFiltrado.setTitle("Filtrar datos");
 		panelFiltrado.setLayout(new ColumnLayout(2));
@@ -47,18 +47,17 @@ public class ConsultaCuentaWindow extends SimpleWindow<ConsultaCuentaVM>
 		comboPeriodo.bindValueToProperty("periodoSeleccionado");
 		comboPeriodo.bindItemsToProperty("periodos");
 		
-		new Label(panelFiltrado).setText("Cuenta");
-		Selector<CuentaEmpresaPeriodo> comboCuenta = new Selector<CuentaEmpresaPeriodo>(panelFiltrado);
-		comboCuenta.bindValueToProperty("nombreCuentaSeleccionada");
-		comboCuenta.bindItemsToProperty("nombresCuentas");
+		new Label(panelFiltrado).setText("Indicador");
+		Selector<Indicador> comboCuenta = new Selector<Indicador>(panelFiltrado);
+		comboCuenta.bindValueToProperty("nombreIndicadorSeleccionado");
+		comboCuenta.bindItemsToProperty("nombresIndicadores");
 		
-		Table<CuentaEmpresaPeriodo> tablaCuentas = new Table<CuentaEmpresaPeriodo>(panelPrincipal, CuentaEmpresaPeriodo.class).setNumberVisibleRows(5);
-		tablaCuentas.bindItemsToProperty("cuentas");
+		Table<Indicador> tablaIndicadores = new Table<Indicador>(panelPrincipal, Indicador.class).setNumberVisibleRows(5);
+		tablaIndicadores.bindItemsToProperty("indicadores");
 		
-		new Column<CuentaEmpresaPeriodo>(tablaCuentas).setTitle("Empresa").setFixedSize(150).bindContentsToProperty("empresa");
-		new Column<CuentaEmpresaPeriodo>(tablaCuentas).setTitle("Periodo").setFixedSize(100).bindContentsToProperty("periodo");
-		new Column<CuentaEmpresaPeriodo>(tablaCuentas).setTitle("Cuenta").setFixedSize(100).bindContentsToProperty("nombreCuenta");
-		new Column<CuentaEmpresaPeriodo>(tablaCuentas).setTitle("Valor").setFixedSize(80).bindContentsToProperty("valor");	
+		new Column<Indicador>(tablaIndicadores).setTitle("Cod.").setFixedSize(150).bindContentsToProperty("codigo");
+		new Column<Indicador>(tablaIndicadores).setTitle("Indicador").setFixedSize(100).bindContentsToProperty("nombre");
+		new Column<Indicador>(tablaIndicadores).setTitle("Valor").setFixedSize(80).bindContentsToProperty("valor");	
 	}
 	
 	@Override
@@ -68,7 +67,7 @@ public class ConsultaCuentaWindow extends SimpleWindow<ConsultaCuentaVM>
 		Panel panel= new Panel(botonera);
 		panel.setLayout(new HorizontalLayout());
 		new Button(panel).setCaption("Consultar").onClick(this::consultar);
-		Graficos.graficarBorde(botonera, 400);	
+		Graficos.graficarBorde(botonera, 340);
 	}
 	
 	public void consultar() 

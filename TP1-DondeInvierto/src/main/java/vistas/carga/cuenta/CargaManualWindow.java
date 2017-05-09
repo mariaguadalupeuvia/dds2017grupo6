@@ -1,6 +1,7 @@
 package vistas.carga.cuenta;
 
 import org.uqbar.arena.layout.ColumnLayout;
+import org.uqbar.arena.layout.HorizontalLayout;
 import org.uqbar.arena.layout.VerticalLayout;
 import org.uqbar.arena.widgets.Button;
 import org.uqbar.arena.widgets.GroupPanel;
@@ -11,7 +12,8 @@ import org.uqbar.arena.widgets.Selector;
 import org.uqbar.arena.windows.Dialog;
 import org.uqbar.arena.windows.WindowOwner;
 
-import dominio.Cuenta;
+import dominio.CuentaEmpresaPeriodo;
+import utils.Graficos;
 import vm.carga.cuenta.CargaManualVM;
 
 @SuppressWarnings("serial")
@@ -28,23 +30,25 @@ public class CargaManualWindow extends Dialog<CargaManualVM>
 		setTitle("Carga manual de cuentas");
 		
 		panelPrincipal.setLayout(new VerticalLayout());
+		Graficos.graficarDolares(panelPrincipal);
+		Graficos.graficarEspacio(panelPrincipal, 340);
 		
 		GroupPanel formDatos = new GroupPanel(panelPrincipal);
 		formDatos.setTitle("Datos de la cuenta");
 		formDatos.setLayout(new ColumnLayout(2));
 	
 		new Label(formDatos).setText("Empresa:");
-		Selector<Cuenta> comboEmpresa = new Selector<Cuenta>(formDatos);
+		Selector<CuentaEmpresaPeriodo> comboEmpresa = new Selector<CuentaEmpresaPeriodo>(formDatos);
 		comboEmpresa.bindValueToProperty("empresaSeleccionada");
 		comboEmpresa.bindItemsToProperty("empresas");
 		
 		new Label(formDatos).setText("Periodo:");
-		Selector<Cuenta> comboPeriodo = new Selector<Cuenta>(formDatos);
+		Selector<CuentaEmpresaPeriodo> comboPeriodo = new Selector<CuentaEmpresaPeriodo>(formDatos);
 		comboPeriodo.bindValueToProperty("periodoSeleccionado");
 		comboPeriodo.bindItemsToProperty("periodos");
 		
 		new Label(formDatos).setText("Cuenta:");
-		Selector<Cuenta> comboCuenta = new Selector<Cuenta>(formDatos);
+		Selector<CuentaEmpresaPeriodo> comboCuenta = new Selector<CuentaEmpresaPeriodo>(formDatos);
 		comboCuenta.bindValueToProperty("nombreCuentaSeleccionada");
 		comboCuenta.bindItemsToProperty("nombresCuentas");
 		
@@ -53,10 +57,14 @@ public class CargaManualWindow extends Dialog<CargaManualVM>
 	}
 	
 	@Override
-	protected void addActions(Panel actions) 
+	protected void addActions(Panel botonera) 
 	{
-		new Button(actions).setCaption("Guardar").onClick(this::accept).setAsDefault();
-		new Button(actions).setCaption("Cancelar").onClick(this::cancel);
+		botonera.setLayout(new VerticalLayout());
+		Panel panel= new Panel(botonera);
+		panel.setLayout(new HorizontalLayout());
+		new Button(panel).setCaption("Guardar").onClick(this::accept).setAsDefault();
+		new Button(panel).setCaption("Cancelar").onClick(this::cancel);
+		Graficos.graficarBorde(botonera, 340);
 	}
 	
 	@Override

@@ -1,39 +1,39 @@
-package vm.consulta.cuenta;
+package vm.consulta.indicador;
 
 import java.util.List;
 
 import org.uqbar.commons.utils.Observable;
 
-import dominio.CuentaEmpresaPeriodo;
-import repositorio.RepositorioCuentas;
+import dominio.Indicador;
 import repositorio.RepositorioEmpresas;
-import repositorio.RepositorioNombresCuentas;
+import repositorio.RepositorioIndicadores;
 import repositorio.RepositorioPeriodos;
 
 @Observable
-public class ConsultaCuentaVM 
+public class ConsultaIndicadorVM 
 {
 	private List<String> empresas;
 	private List<Integer> periodos;
-	private List<String> nombresCuentas;
+	private List<String> nombresIndicadores;
 
 	private String empresaSeleccionada;
-	private String nombreCuentaSeleccionada;
+	private String nombreIndicadorSeleccionado;
 	private int periodoSeleccionado;
 	private double valor;
 	
-	private List <CuentaEmpresaPeriodo> cuentas;
+	private List <Indicador> indicadores;
 
-	public ConsultaCuentaVM() 
+	public ConsultaIndicadorVM() 
 	{
 		empresas = RepositorioEmpresas.getNombresEmpresas();
 		periodos = RepositorioPeriodos.getPeriodos();
-		nombresCuentas = RepositorioNombresCuentas.getNombresCuentas();
+		nombresIndicadores = RepositorioIndicadores.getNombresIndicadores();
 	}
 
 	public void consultar() 
 	{
-		cuentas = RepositorioCuentas.filtrarCuentas(empresaSeleccionada, nombreCuentaSeleccionada, periodoSeleccionado,valor);
+		//TODO calcular el valor para cada indicador
+		//indicadores = RepositorioIndicadores.filtrarIndicadores(empresaSeleccionada, nombreIndicadorSeleccionado, periodoSeleccionado,valor);
 	}
 
 	
@@ -54,28 +54,12 @@ public class ConsultaCuentaVM
 		this.periodos = periodos;
 	}
 
-	public List<String> getNombresCuentas() {
-		return nombresCuentas;
-	}
-
-	public void setNombresCuentas(List<String> nombresCuentas) {
-		this.nombresCuentas = nombresCuentas;
-	}
-
 	public String getEmpresaSeleccionada() {
 		return empresaSeleccionada;
 	}
 
 	public void setEmpresaSeleccionada(String empresaSeleccionada) {
 		this.empresaSeleccionada = empresaSeleccionada;
-	}
-
-	public String getNombreCuentaSeleccionada() {
-		return nombreCuentaSeleccionada;
-	}
-
-	public void setNombreCuentaSeleccionada(String nombreCuentaSeleccionada) {
-		this.nombreCuentaSeleccionada = nombreCuentaSeleccionada;
 	}
 
 	public int getPeriodoSeleccionado() {
@@ -94,11 +78,27 @@ public class ConsultaCuentaVM
 		this.valor = valor;
 	}
 
-	public List<CuentaEmpresaPeriodo> getCuentas() {
-		return cuentas;
+	public List<String> getNombresIndicadores() {
+		return nombresIndicadores;
 	}
 
-	public void setCuentas(List<CuentaEmpresaPeriodo> cuentas) {
-		this.cuentas = cuentas;
+	public void setNombresIndicadores(List<String> nombresIndicadores) {
+		this.nombresIndicadores = nombresIndicadores;
+	}
+
+	public String getNombreIndicadorSeleccionado() {
+		return nombreIndicadorSeleccionado;
+	}
+
+	public void setNombreIndicadorSeleccionado(String nombreIndicadorSeleccionado) {
+		this.nombreIndicadorSeleccionado = nombreIndicadorSeleccionado;
+	}
+
+	public List <Indicador> getIndicadores() {
+		return indicadores;
+	}
+
+	public void setIndicadores(List <Indicador> indicadores) {
+		this.indicadores = indicadores;
 	}
 }

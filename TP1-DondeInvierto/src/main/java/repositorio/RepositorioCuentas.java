@@ -4,25 +4,25 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import dominio.Cuenta;
+import dominio.CuentaEmpresaPeriodo;
 
 public class RepositorioCuentas 
 {
-	private static List<Cuenta> cuentas;
+	private static List<CuentaEmpresaPeriodo> cuentas;
 	
 	public static void inicializarRepositorio()
 	{
 		cuentas = new ArrayList<>();
 	}
 	
-	public static void agregar(Cuenta cuenta) 
+	public static void agregar(CuentaEmpresaPeriodo cuenta) 
 	{
 		cuentas.add(cuenta);
 	}
 	
-	public static List<Cuenta> filtrarCuentas(String empresa, String nombreCuenta,Integer periodo, Double valor) 
+	public static List<CuentaEmpresaPeriodo> filtrarCuentas(String empresa, String nombreCuenta,Integer periodo, Double valor) 
 	{
-		List<Cuenta> cuentasFiltradas = cuentas;
+		List<CuentaEmpresaPeriodo> cuentasFiltradas = cuentas;
 		
 		if (empresa != null) 
 		{
@@ -44,7 +44,7 @@ public class RepositorioCuentas
 		return cuentasFiltradas;
 	}
 	
-	public static void agregarVarias(List<Cuenta> nuevasCuentas) 
+	public static void agregarVarias(List<CuentaEmpresaPeriodo> nuevasCuentas) 
 	{
 		cuentas.addAll(nuevasCuentas);
 	}
@@ -52,12 +52,12 @@ public class RepositorioCuentas
 	
 	
 	//PROPIEDADES
-	public static List<Cuenta> getCuentas() 
+	public static List<CuentaEmpresaPeriodo> getCuentas() 
 	{
 		return cuentas;
 	}
 
-	public static void setCuentas(List<Cuenta> nuevasCuentas) 
+	public static void setCuentas(List<CuentaEmpresaPeriodo> nuevasCuentas) 
 	{
 		cuentas = nuevasCuentas;
 	}

@@ -1,14 +1,14 @@
 package vistas.carga.indicador;
 
-import org.uqbar.arena.layout.HorizontalLayout;
 import org.uqbar.arena.layout.VerticalLayout;
 import org.uqbar.arena.widgets.Button;
-import org.uqbar.arena.widgets.Label;
 import org.uqbar.arena.widgets.Panel;
-import org.uqbar.arena.widgets.TextBox;
+
+import org.uqbar.arena.windows.Dialog;
 import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
 
+import utils.Graficos;
 import vm.carga.indicador.MenuCargaIndicadoresVM;
 
 @SuppressWarnings("serial")
@@ -20,36 +20,32 @@ public class MenuCargaIndicadoresWindow extends SimpleWindow<MenuCargaIndicadore
 	}
 
 	@Override
-	protected void createFormPanel(Panel panelPrincipal) {
-		this.setTitle("Indicador");
-
+	protected void createFormPanel(Panel panelPrincipal) 
+	{
 		panelPrincipal.setLayout(new VerticalLayout());
-
-		Panel form1 = new Panel(panelPrincipal);
-		form1.setLayout(new VerticalLayout());
-
-		Panel panel1 = new Panel(form1);
-		panel1.setLayout(new HorizontalLayout());
-
-		new Label(panel1).setText("Nombre");
-		new TextBox(panel1).setWidth(150).bindValueToProperty("nombre");
-
-		Panel panel2 = new Panel(form1);
-		panel2.setLayout(new HorizontalLayout());
-		new Label(panel2).setText("Ingrese su formula =");
-		new TextBox(panel2).setWidth(150).bindValueToProperty("formula");
-		new Label(panel2).setText("Ej: (12+6)/2;");
-
+		this.setTitle("Cargar indicadores");
+		Graficos.graficarDolares(panelPrincipal);
+		Graficos.graficarEspacio(panelPrincipal, 340);
 	}
-
-	public void validarFormula() {
-		this.getModelObject().validarFormula();
-	}
-
+	
 	@Override
-	protected void addActions(Panel actionsPanel) {
-		new Button(actionsPanel).setCaption("Validar formula").onClick(this::validarFormula);
-		new Label(actionsPanel).setText("resultado:").setWidth(500).bindValueToProperty("resultado");
-
+	protected void addActions(Panel botonera) 
+	{
+		botonera.setLayout(new VerticalLayout());
+		
+		new Button(botonera).setCaption("3.1 - Carga manual").onClick(this::cargaManual).setWidth(200);
+		new Button(botonera).setCaption("3.2 - Carga masiva").onClick(this::cargaMasiva).setWidth(200);
+		
+		Graficos.graficarBorde(botonera, 340);
 	}
+	
+	public void cargaManual() {
+		Dialog<?> dialog = new CargaManualIndicadorWindow(this);
+		dialog.open();
+	}
+	public void cargaMasiva(){
+		Dialog<?> dialog = new CargaMasivaIndicadoresWindow(this);
+		dialog.open();
+	}
+
 }

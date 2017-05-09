@@ -1,4 +1,5 @@
 package vm.carga.cuenta;
 
-public class MenuCargarCuentasVM {
+public class MenuCargarCuentasVM 
+{
 }
