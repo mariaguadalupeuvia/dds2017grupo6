@@ -1,7 +1,0 @@
-utils\Graficos.class
-dominio\datos\DatosExcelCargaMasiva.class
-dominio\datos\EstructuraEsperada.class
-test\OrigenDatosTest.class
-dominio\datos\DatosTxt.class
-utils\Paleta.class
-interfases\IOrigenDatos.class
