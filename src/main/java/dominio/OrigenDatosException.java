@@ -13,4 +13,10 @@ public class OrigenDatosException extends RuntimeException
 	{
 		super(mensaje);
 	}
+	
+	public OrigenDatosException(String mensaje, Throwable causa) 
+	{
+		super(mensaje, causa);
+	}
+	
 }

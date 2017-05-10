@@ -40,13 +40,11 @@ public class DatosTxt implements OrigenDatos
       }
       catch(FileNotFoundException e)
       {
-    	  e.printStackTrace();
     	  throw new OrigenDatosException("No se encontro el archivo de datos");
     	 
       }
       catch(IOException e)
       {
-    	  e.printStackTrace();
     	  throw new OrigenDatosException("Se produjo un error al acceder al archivo");
       }
 
@@ -62,7 +60,6 @@ public class DatosTxt implements OrigenDatos
          }
          catch (Exception e2)
          { 
-            e2.printStackTrace();
             throw new OrigenDatosException("Se produjo un error al liberar el recurso usado para leer el archivo");
          }
       }

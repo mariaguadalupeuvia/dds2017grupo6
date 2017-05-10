@@ -12,5 +12,10 @@ public class ParserDatosException extends RuntimeException
 	{
 		super(mensaje);
 	}
-
+	
+	public ParserDatosException(String mensaje, Throwable causa) 
+	{
+		super(mensaje, causa);
+	}
+	
 }
