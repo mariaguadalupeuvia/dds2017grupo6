@@ -5,7 +5,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import javax.swing.JOptionPane;
+
+import dominio.OrigenDatosException;
 import dominio.interfases.OrigenDatos;
 import dominio.interfases.ParserDatos;
 
@@ -35,17 +36,18 @@ public class DatosTxt implements OrigenDatos
          {
         	 parser.parsear(linea);
          }
-         JOptionPane.showMessageDialog(null, "Se obtuvieron los datos con exito", "Informacion", JOptionPane.INFORMATION_MESSAGE);
+         
       }
       catch(FileNotFoundException e)
       {
-    	  JOptionPane.showMessageDialog(null, "No se encontro el archivo de datos", "Error", JOptionPane.ERROR_MESSAGE);
     	  e.printStackTrace();
+    	  throw new OrigenDatosException("No se encontro el archivo de datos");
+    	 
       }
       catch(IOException e)
       {
-    	  JOptionPane.showMessageDialog(null, "Se produjo un error al acceder al archivo", "Error", JOptionPane.ERROR_MESSAGE);
     	  e.printStackTrace();
+    	  throw new OrigenDatosException("Se produjo un error al acceder al archivo");
       }
 
       finally
@@ -60,8 +62,8 @@ public class DatosTxt implements OrigenDatos
          }
          catch (Exception e2)
          { 
-        	JOptionPane.showMessageDialog(null, "Se produjo un error al liberar el recurso usado para leer el archivo", "Error", JOptionPane.ERROR_MESSAGE);
             e2.printStackTrace();
+            throw new OrigenDatosException("Se produjo un error al liberar el recurso usado para leer el archivo");
          }
       }
    }

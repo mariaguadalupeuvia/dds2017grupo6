@@ -1,5 +1,7 @@
 package vistas.carga.indicador;
 
+import javax.swing.JOptionPane;
+
 import org.uqbar.arena.layout.HorizontalLayout;
 import org.uqbar.arena.layout.VerticalLayout;
 import org.uqbar.arena.widgets.Button;
@@ -57,8 +59,15 @@ public class CargaMasivaIndicadoresWindow  extends Dialog<CargaMasivaIndicadores
 	@Override
 	protected void executeTask()
 	{
-		getModelObject().cargarDatos();
-		
+		try
+		{
+			getModelObject().cargarDatos();
+			JOptionPane.showMessageDialog(null, "Se obtuvieron los datos con exito", "Informacion", JOptionPane.INFORMATION_MESSAGE);
+		}
+		catch(RuntimeException ex)
+		{
+			JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+		}
 		super.executeTask();
 	}
 }

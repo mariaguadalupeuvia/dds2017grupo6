@@ -5,7 +5,6 @@ import repositorio.RepositorioEmpresas;
 import repositorio.RepositorioNombresCuentas;
 import repositorio.RepositorioPeriodos;
 
-
 public class ParserCuentaTxt
 {
 

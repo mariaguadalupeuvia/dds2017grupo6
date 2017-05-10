@@ -1,16 +1,16 @@
-package vm.carga.indicador;
+package vm.carga.cuenta;
 
 import org.uqbar.commons.utils.Observable;
-
 import dominio.Importador;
-import dominio.ParserIndicador;
+import dominio.ParserCuenta;
+
 
 @Observable
-public class CargaMasivaIndicadoresVM 
+public class CargaMasivaVM 
 {
-	
 	private String rutaDelArchivo;
-
+	private Importador importador = new Importador();
+	
 	public String getRutaDelArchivo() {
 		return rutaDelArchivo;
 	}
@@ -21,7 +21,7 @@ public class CargaMasivaIndicadoresVM
 
 	public void cargarDatos() 
 	{
-		Importador.cargarDatosDe(rutaDelArchivo, new ParserIndicador());
+		importador.cargarDatosDe(rutaDelArchivo, new ParserCuenta());
 	}
 
 }

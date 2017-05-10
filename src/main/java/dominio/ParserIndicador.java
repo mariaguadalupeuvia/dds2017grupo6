@@ -6,13 +6,19 @@ import dominio.interfases.ParserDatos;
 
 public class ParserIndicador implements ParserDatos
 {
-	@Override
 	public void parsear(String registro)
 	{
-		ParserIndicadorTxt.parsear(registro);
+		try
+		{
+			ParserIndicadorTxt.parsear(registro);
+		}
+		catch(RuntimeException ex)
+		{
+			throw new ParserDatosException("Los datos obtenidos del archivo no tienen el formato esperado");
+		}
+		
 	}
 
-	@Override
 	public void parsear(HSSFRow next) 
 	{
 		// TODO Auto-generated method stub
