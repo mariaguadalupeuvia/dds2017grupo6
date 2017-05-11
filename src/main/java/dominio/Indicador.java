@@ -6,6 +6,9 @@ import org.uqbar.commons.utils.Observable;
 public class Indicador extends Cuenta
 {
 	private String formula;
+	public Indicador()
+	{
+	}
 	public Indicador(String formula, String codigo, String nombre)
 	{
 		this.formula = formula;

@@ -20,7 +20,7 @@ public class RepositorioCuentas
 		cuentas.add(cuenta);
 	}
 	
-	public static List<CuentaEmpresaPeriodo> filtrarCuentas(String empresa, String nombreCuenta,Integer periodo, Double valor) 
+	public static List<CuentaEmpresaPeriodo> filtrarCuentas(String empresa, String nombreCuenta,String periodo, Double valor) 
 	{
 		List<CuentaEmpresaPeriodo> cuentasFiltradas = cuentas;
 		
@@ -34,12 +34,11 @@ public class RepositorioCuentas
 			cuentasFiltradas =  cuentasFiltradas.stream().filter(cuenta -> cuenta.getNombreCuenta().equals(nombreCuenta))
 					.collect(Collectors.toList());
 		}
-		if (periodo != 0)
+		if (periodo != null)
 		{
 			cuentasFiltradas =  cuentasFiltradas.stream().filter(cuenta -> cuenta.getPeriodo().equals(periodo))
 					.collect(Collectors.toList());
 		}
-		
 		
 		return cuentasFiltradas;
 	}
@@ -60,5 +59,10 @@ public class RepositorioCuentas
 	public static void setCuentas(List<CuentaEmpresaPeriodo> nuevasCuentas) 
 	{
 		cuentas = nuevasCuentas;
+	}
+
+	public static void resetCuentas() {
+	cuentas.clear();
+		
 	}
 }

@@ -5,7 +5,7 @@ import repositorio.RepositorioIndicadores;
 
 public class ParserIndicadorTxt 
 {
-	public static void parsear(String registro)
+	public void parsear(String registro)
 	{
 	    String[] datos = registro.split(";"); 
 	    

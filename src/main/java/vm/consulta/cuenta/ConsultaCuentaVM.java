@@ -14,12 +14,12 @@ import repositorio.RepositorioPeriodos;
 public class ConsultaCuentaVM 
 {
 	private List<String> empresas;
-	private List<Integer> periodos;
+	private List<String> periodos;
 	private List<String> nombresCuentas;
 
 	private String empresaSeleccionada;
 	private String nombreCuentaSeleccionada;
-	private int periodoSeleccionado;
+	private String periodoSeleccionado;
 	private double valor;
 	
 	private List <CuentaEmpresaPeriodo> cuentas;
@@ -33,7 +33,7 @@ public class ConsultaCuentaVM
 
 	public void consultar() 
 	{
-		cuentas = RepositorioCuentas.filtrarCuentas(empresaSeleccionada, nombreCuentaSeleccionada, periodoSeleccionado,valor);
+		cuentas = RepositorioCuentas.filtrarCuentas(empresaSeleccionada, nombreCuentaSeleccionada, periodoSeleccionado, valor);
 	}
 
 	
@@ -46,11 +46,11 @@ public class ConsultaCuentaVM
 		this.empresas = empresas;
 	}
 
-	public List<Integer> getPeriodos() {
+	public List<String> getPeriodos() {
 		return periodos;
 	}
 
-	public void setPeriodos(List<Integer> periodos) {
+	public void setPeriodos(List<String> periodos) {
 		this.periodos = periodos;
 	}
 
@@ -78,11 +78,11 @@ public class ConsultaCuentaVM
 		this.nombreCuentaSeleccionada = nombreCuentaSeleccionada;
 	}
 
-	public int getPeriodoSeleccionado() {
+	public String getPeriodoSeleccionado() {
 		return periodoSeleccionado;
 	}
 
-	public void setPeriodoSeleccionado(int periodoSeleccionado) {
+	public void setPeriodoSeleccionado(String periodoSeleccionado) {
 		this.periodoSeleccionado = periodoSeleccionado;
 	}
 

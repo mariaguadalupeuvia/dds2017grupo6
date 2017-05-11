@@ -7,10 +7,10 @@ public class CuentaEmpresaPeriodo
 {
 	private String empresa;
     private String nombreCuenta;
-    private Integer periodo;
+    private String periodo;
 	private Double valor;
 
-	public CuentaEmpresaPeriodo(String empresa, String nombreCuenta, Integer periodo, Double valor)
+	public CuentaEmpresaPeriodo(String empresa, String nombreCuenta, String periodo, Double valor)
 	{
 		this.empresa = empresa;
 		this.nombreCuenta = nombreCuenta;
@@ -36,11 +36,11 @@ public class CuentaEmpresaPeriodo
 		this.nombreCuenta = nombreCuenta;
 	}
 	
-	public Integer getPeriodo() {
+	public String getPeriodo() {
 			return periodo;
 	}
 
-	public void setPeriodo(Integer periodo) {
+	public void setPeriodo(String periodo) {
 			this.periodo = periodo;
 	}
 	

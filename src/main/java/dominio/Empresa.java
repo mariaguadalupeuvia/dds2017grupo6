@@ -28,4 +28,8 @@ public class Empresa {
 		this.nombre = nombre;
 	}
 
+	public void agregarPeriodo(Periodo unPeriodo)
+	{
+		periodos.add(unPeriodo);
+	}
 }

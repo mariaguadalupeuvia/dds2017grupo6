@@ -13,12 +13,12 @@ import repositorio.RepositorioPeriodos;
 public class ConsultaIndicadorVM 
 {
 	private List<String> empresas;
-	private List<Integer> periodos;
+	private List<String> periodos;
 	private List<String> nombresIndicadores;
 
 	private String empresaSeleccionada;
 	private String nombreIndicadorSeleccionado;
-	private int periodoSeleccionado;
+	private String periodoSeleccionado;
 	private double valor;
 	
 	private List <Indicador> indicadores;
@@ -46,11 +46,11 @@ public class ConsultaIndicadorVM
 		this.empresas = empresas;
 	}
 
-	public List<Integer> getPeriodos() {
+	public List<String> getPeriodos() {
 		return periodos;
 	}
 
-	public void setPeriodos(List<Integer> periodos) {
+	public void setPeriodos(List<String> periodos) {
 		this.periodos = periodos;
 	}
 
@@ -62,11 +62,11 @@ public class ConsultaIndicadorVM
 		this.empresaSeleccionada = empresaSeleccionada;
 	}
 
-	public int getPeriodoSeleccionado() {
+	public String getPeriodoSeleccionado() {
 		return periodoSeleccionado;
 	}
 
-	public void setPeriodoSeleccionado(int periodoSeleccionado) {
+	public void setPeriodoSeleccionado(String periodoSeleccionado) {
 		this.periodoSeleccionado = periodoSeleccionado;
 	}
 

@@ -1,4 +1,4 @@
-package dominio;
+package excepciones;
 
 @SuppressWarnings("serial")
 public class OrigenDatosException extends RuntimeException 

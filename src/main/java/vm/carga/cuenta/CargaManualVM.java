@@ -12,12 +12,12 @@ import repositorio.RepositorioPeriodos;
 @Observable
 public class CargaManualVM {
 	private List<String> empresas;
-	private List<Integer> periodos;
+	private List<String> periodos;
 	private List<String> nombresCuentas;
 
 	private String empresaSeleccionada;
 	private String nombreCuentaSeleccionada;
-	private int periodoSeleccionado;
+	private String periodoSeleccionado;
 	private double valor;
 
 	public CargaManualVM() 
@@ -32,8 +32,7 @@ public class CargaManualVM {
 		RepositorioCuentas.agregar(new CuentaEmpresaPeriodo(empresaSeleccionada, nombreCuentaSeleccionada, periodoSeleccionado, valor));
 	}
 
-	
-	
+
 	// PROPIEDADES
 	public List<String> getEmpresas() {
 		return empresas;
@@ -43,11 +42,11 @@ public class CargaManualVM {
 		this.empresas = empresas;
 	}
 
-	public List<Integer> getPeriodos() {
+	public List<String> getPeriodos() {
 		return periodos;
 	}
 
-	public void setPeriodos(List<Integer> periodos) {
+	public void setPeriodos(List<String> periodos) {
 		this.periodos = periodos;
 	}
 
@@ -75,11 +74,11 @@ public class CargaManualVM {
 		this.nombreCuentaSeleccionada = nombreCuentaSeleccionada;
 	}
 
-	public int getPeriodoSeleccionado() {
+	public String getPeriodoSeleccionado() {
 		return periodoSeleccionado;
 	}
 
-	public void setPeriodoSeleccionado(int periodoSeleccionado) {
+	public void setPeriodoSeleccionado(String periodoSeleccionado) {
 		this.periodoSeleccionado = periodoSeleccionado;
 	}
 

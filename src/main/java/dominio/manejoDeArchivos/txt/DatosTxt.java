@@ -6,9 +6,9 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
-import dominio.OrigenDatosException;
 import dominio.interfases.OrigenDatos;
 import dominio.interfases.ParserDatos;
+import excepciones.OrigenDatosException;
 
 public class DatosTxt implements OrigenDatos
 {

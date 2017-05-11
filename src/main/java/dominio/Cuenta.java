@@ -6,7 +6,12 @@ public class Cuenta
     private String nombre;
 	private Double valor;
 	
+	public Cuenta()
+	{}
 	
+	public Cuenta(String nombre) {
+		this.nombre = nombre;
+	}
 	public String getCodigo() {
 		return codigo;
 	}

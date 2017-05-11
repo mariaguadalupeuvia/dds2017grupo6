@@ -1,45 +1,50 @@
 package repositorio;
 
 import java.util.ArrayList;
-import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Set;
+
 
 public class RepositorioPeriodos {
 
-	private static List<Integer> periodos;
+	private static List<String> periodos;
 	
 	public static void inicializarRepositorio() 
 	{
 		periodos = new ArrayList<>();
 	}
 	
-	public static void agregar(Integer periodo)
+	public static void agregar(String periodo)
 	{
 		periodos.add(periodo);
 	}
 	
-	public static void agregarVarios(List<Integer> nuevosPeriodos) 
+	public static void agregarVarios(List<String> nuevosPeriodos) 
 	{
 		periodos.addAll(nuevosPeriodos);
 	}
 	
-	
+	public static void agregarSiNoExiste(String nombrePeriodo)
+	{
+		if(!periodos.contains(nombrePeriodo.toLowerCase()))
+		{
+			periodos.add(nombrePeriodo.toLowerCase());
+		}
+	}
 	
 	//PROPIEDADES
-	public static List<Integer> getPeriodos() 
+	public static List<String> getPeriodos() 
 	{
-		Set<Integer> linkedHashSet = new LinkedHashSet<Integer>();
-		linkedHashSet.addAll(periodos);
-		periodos.clear();
-		periodos.addAll(linkedHashSet);
-		
 		return periodos;
 	}
 	
-	public static void setPeriodos(ArrayList<Integer> nuevosPeriodos) 
+	public static void setPeriodos(ArrayList<String> nuevosPeriodos) 
 	{
 		periodos = nuevosPeriodos;
+	}
+
+	public static void resetPeriodos() {
+		periodos.clear();
+		
 	}
 
 }
