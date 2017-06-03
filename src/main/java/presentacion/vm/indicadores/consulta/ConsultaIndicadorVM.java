@@ -1,4 +1,4 @@
-package presentacion.vm.consulta.cuenta;
+package presentacion.vm.indicadores.consulta;
 
 import java.util.List;
 
@@ -9,16 +9,21 @@ import negocio.dominio.Periodo;
 import negocio.repositorio.RepositorioEmpresas;
 
 @Observable
-public class ConsultaCuentaVM 
+public class ConsultaIndicadorVM 
 {
 	private Empresa empresaSeleccionada;
 	private Periodo periodoSeleccionado;
 	
 	private List<Empresa> empresas;	
 
-	public ConsultaCuentaVM()
+	public ConsultaIndicadorVM()
 	{
 		empresas = RepositorioEmpresas.getEmpresas();
+		notificarEvento();
+	}
+
+	public void notificarEvento() {
+		empresas.forEach(empresa -> empresa.onConsultaDeIndicadores());
 	}
 	
 	

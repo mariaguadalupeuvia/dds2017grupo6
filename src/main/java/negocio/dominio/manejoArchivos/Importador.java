@@ -1,11 +1,7 @@
 package negocio.dominio.manejoArchivos;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
-import org.apache.poi.EncryptedDocumentException;
-import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 
 import negocio.dominio.Empresa;
 import negocio.dominio.manejoArchivos.Fuente.Fuente;
@@ -16,7 +12,7 @@ public class Importador
 	private Fuente fuente;
 	private Parser parser;
 	
-	public void obtenerDatos(String ruta) throws EncryptedDocumentException, InvalidFormatException, IOException
+	public void obtenerDatos(String ruta)
 	{
 		fuente.leerDatos(ruta);
 	}
@@ -24,7 +20,7 @@ public class Importador
 	{
 		List<Empresa> empresas = new ArrayList<>();
 		
-		fuente.getDatos().forEach( fila -> {
+		fuente.getDatos().forEach(fila -> {
 			
 			Empresa empresa = parser.parsear(fila);
 			empresas.add(empresa);
@@ -32,6 +28,7 @@ public class Importador
 		
 		return empresas;
 	}
+	
 	
 	
 	//PROPIEDADES

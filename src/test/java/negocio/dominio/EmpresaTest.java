@@ -24,21 +24,21 @@ public class EmpresaTest {
 		Cuenta cuenta1 = new Cuenta();
 		cuenta1.setNombre("ebidata");
 		cuenta1.setValor(100d);
-		periodoNuevo.agregarCuenta(cuenta1);
+		periodoNuevo.agregarMedible(cuenta1);
 		
 		periodoDistinto = new Periodo();
 		periodoDistinto.setAño(2016);
 		Cuenta cuenta2 = new Cuenta();
 		cuenta2.setNombre("ebidata");
 		cuenta2.setValor(200d);
-		periodoDistinto.agregarCuenta(cuenta2);
+		periodoDistinto.agregarMedible(cuenta2);
 		
 		periodoIgual = new Periodo();
 		periodoIgual.setAño(2017);
 		Cuenta cuenta3 = new Cuenta();
 		cuenta3.setNombre("cashflow");
 		cuenta3.setValor(300d);
-		periodoIgual.agregarCuenta(cuenta3);
+		periodoIgual.agregarMedible(cuenta3);
 	}
 	
 	@Test
@@ -71,6 +71,6 @@ public class EmpresaTest {
 		
 		assertTrue(cantidadPeriodosEnLaEmpresa == 1);
 		assertTrue(periodo.getAño().equals(periodoNuevo.getAño()) && periodo.getAño().equals(periodoIgual.getAño()));
-		assertTrue(periodo.getCuentas().containsAll(periodoNuevo.getCuentas()) && periodo.getCuentas().containsAll(periodoIgual.getCuentas()));
+		assertTrue(periodo.getMedibles().containsAll(periodoNuevo.getMedibles()) && periodo.getMedibles().containsAll(periodoIgual.getMedibles()));
 	}
 }

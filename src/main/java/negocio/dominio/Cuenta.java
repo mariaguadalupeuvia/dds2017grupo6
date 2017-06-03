@@ -3,7 +3,7 @@ package negocio.dominio;
 import org.uqbar.commons.utils.Observable;
 
 @Observable
-public class Cuenta 
+public class Cuenta implements Medible
 {
     private String nombre;
     private Double valor;

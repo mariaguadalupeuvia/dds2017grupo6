@@ -1,4 +1,4 @@
-package presentacion.vistas.consulta.cuenta;
+package presentacion.vistas.indicadores.consulta;
 
 import org.uqbar.arena.layout.ColumnLayout;
 import org.uqbar.arena.layout.VerticalLayout;
@@ -11,23 +11,23 @@ import org.uqbar.arena.widgets.tables.Table;
 import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
 
-import negocio.dominio.Cuenta;
 import negocio.dominio.Empresa;
 import negocio.dominio.Periodo;
-import presentacion.vm.consulta.cuenta.ConsultaCuentaVM;
+import presentacion.vm.indicadores.consulta.ConsultaIndicadorVM;
+import negocio.dominio.Indicador;
 
 @SuppressWarnings("serial")
-public class ConsultaCuentaWindow extends SimpleWindow<ConsultaCuentaVM> 
+public class ConsultaIndicadorWindow extends SimpleWindow<ConsultaIndicadorVM> 
 {
-	public ConsultaCuentaWindow(WindowOwner owner) 
+	public ConsultaIndicadorWindow(WindowOwner owner) 
 	{
-		super(owner, new ConsultaCuentaVM());
+		super(owner, new ConsultaIndicadorVM());
 	}
 
 	@Override
 	protected void createFormPanel(Panel panelPrincipal) 
 	{
-		setTitle("Consulta de cuentas");
+		setTitle("Consulta de indicadores");
 		panelPrincipal.setLayout(new VerticalLayout());
 		
 		GroupPanel panelFiltrado = new GroupPanel(panelPrincipal);
@@ -46,12 +46,20 @@ public class ConsultaCuentaWindow extends SimpleWindow<ConsultaCuentaVM>
 		comboPeriodo.bindValueToProperty("periodoSeleccionado");
 		comboPeriodo.bindItemsToProperty("empresaSeleccionada.periodos");
 		
-		Table<Cuenta> tablaCuentas = new Table<>(panelPrincipal, Cuenta.class).setNumberVisibleRows(5);
-		tablaCuentas.bindItemsToProperty("periodoSeleccionado.cuentas");
+		Table<Indicador> tablaIndicadores = new Table<>(panelPrincipal, Indicador.class).setNumberVisibleRows(5);
+		tablaIndicadores.bindItemsToProperty("periodoSeleccionado.indicadores");
 		
-		new Column<>(tablaCuentas).setTitle("Cuenta").bindContentsToProperty("nombre");
+		new Column<>(tablaIndicadores).setTitle("Indicador").bindContentsToProperty("nombre");
 		
-		new Column<>(tablaCuentas).setTitle("Valor").bindContentsToProperty("valor");	
+		new Column<>(tablaIndicadores).setTitle("Formula").bindContentsToProperty("formula.expresion");
+		
+		new Column<>(tablaIndicadores).setTitle("Valor").bindContentsToProperty("valor").setTransformer((valor) -> 
+		{
+			if(valor != null)
+				return String.valueOf(valor);
+			
+			return "ERROR: existen cuentas/indicadores no cargados";
+		});	
 	}
 
 	@Override

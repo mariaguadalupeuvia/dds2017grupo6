@@ -11,6 +11,12 @@ public class Empresa
 	private String nombre;
 	private List<Periodo> periodos = new ArrayList<>();
 	
+
+	public void onConsultaDeIndicadores() {
+		
+		periodos.forEach(periodo -> periodo.onConsultaDeIndicadores());
+	}
+	
 	public void agregarVariosPeriodos(List<Periodo> periodosNuevos)
 	{
 		periodosNuevos.forEach(periodoNuevo -> agregarPeriodo(periodoNuevo));
@@ -29,7 +35,7 @@ public class Empresa
 				
 				if(periodo.getAño().equals(periodoNuevo.getAño()))
 				{
-					periodo.agregarVariasCuentas(periodoNuevo.getCuentas());
+					periodo.agregarVariosMedibles(periodoNuevo.getMedibles());
 				}
 			});
 		}

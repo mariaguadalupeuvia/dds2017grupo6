@@ -7,8 +7,8 @@ import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
 
 import presentacion.utils.Graficos;
-import presentacion.vistas.carga.cuenta.MenuCargaCuentasWindow;
-import presentacion.vistas.consulta.cuenta.ConsultaCuentaWindow;
+import presentacion.vistas.cuentas.MenuCuentaWindow;
+import presentacion.vistas.indicadores.MenuIndicadorWindow;
 import presentacion.vm.MenuPrincipalVM;
 
 @SuppressWarnings("serial")
@@ -36,18 +36,18 @@ public class MenuPrincipalWindow extends SimpleWindow<MenuPrincipalVM>
 		
 		Graficos.graficarEspacio(botonera, 360);
 		
-		new Button(botonera).setCaption("1. Carga de cuentas").onClick(this::carga).setWidth(200);
-		new Button(botonera).setCaption("2. Consulta de cuentas").onClick(this::consulta).setWidth(200);
+		new Button(botonera).setCaption("1. Cuentas").onClick(this::cuentas).setWidth(200);
+		new Button(botonera).setCaption("2. Indicadores").onClick(this::indicadores).setWidth(200);
 		
 		Graficos.graficarBorde(botonera, 360);
 	}
 	
-	public void carga()
+	public void cuentas()
 	{
-		new MenuCargaCuentasWindow(this).open();
+		new MenuCuentaWindow(this).open();
 	}
-	public void consulta()
+	public void indicadores()
 	{
-		new ConsultaCuentaWindow(this).open();
+		new MenuIndicadorWindow(this).open();
 	}
 }

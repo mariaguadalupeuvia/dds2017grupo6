@@ -1,4 +1,4 @@
-package presentacion.vm.carga.cuenta;
+package presentacion.vm.cuentas.carga;
 
 import org.uqbar.commons.utils.Observable;
 
@@ -8,7 +8,7 @@ import negocio.dominio.Periodo;
 import negocio.repositorio.RepositorioEmpresas;
 
 @Observable
-public class CargaManualVM 
+public class CargaManualCuentaVM 
 {
 	private String nombreEmpresa;
 	private Integer añoPeriodo;
@@ -24,7 +24,7 @@ public class CargaManualVM
 		cuenta.setNombre(nombreCuenta);
 		cuenta.setValor(valorCuenta);
 		periodo.setAño(añoPeriodo);
-		periodo.agregarCuenta(cuenta);
+		periodo.agregarMedible(cuenta);
 		empresa.setNombre(nombreEmpresa);
 		empresa.agregarPeriodo(periodo);
 		

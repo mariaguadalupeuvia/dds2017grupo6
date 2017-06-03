@@ -7,14 +7,23 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import negocio.dominio.excepciones.FuenteInvalidaException;
+
 public class FuenteTxt implements Fuente 
 {
 	private List<String> datos = new ArrayList<>();
 	
 	@Override
-	public void leerDatos(String ruta) throws IOException
+	public void leerDatos(String ruta)
 	{
-		datos = Files.lines(Paths.get(ruta)).collect(Collectors.toList());
+		try 
+		{
+			datos = Files.lines(Paths.get(ruta)).collect(Collectors.toList());
+		} 
+		catch (IOException e) 
+		{
+			throw new FuenteInvalidaException(e.getMessage());
+		}
 	}
 
 	@Override

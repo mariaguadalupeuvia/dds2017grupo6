@@ -1,4 +1,4 @@
-package presentacion.vistas.carga.cuenta;
+package presentacion.vistas.cuentas.carga;
 
 import org.uqbar.arena.layout.VerticalLayout;
 import org.uqbar.arena.widgets.Button;
@@ -6,15 +6,15 @@ import org.uqbar.arena.widgets.Panel;
 import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
 
-import presentacion.vm.carga.cuenta.MenuCargarCuentasVM;
+import presentacion.vm.cuentas.carga.MenuCargaCuentaVM;
 
 @SuppressWarnings("serial")
-public class MenuCargaCuentasWindow extends SimpleWindow<MenuCargarCuentasVM>
+public class MenuCargaCuentaWindow extends SimpleWindow<MenuCargaCuentaVM>
 {
 
-	public MenuCargaCuentasWindow(WindowOwner parent) {
+	public MenuCargaCuentaWindow(WindowOwner parent) {
 		
-		super(parent, new MenuCargarCuentasVM());
+		super(parent, new MenuCargaCuentaVM());
 	}
 
 	@Override
@@ -36,10 +36,10 @@ public class MenuCargaCuentasWindow extends SimpleWindow<MenuCargarCuentasVM>
 	
 	public void cargaManual() 
 	{
-		new CargaManualWindow(this).open();
+		new CargaManualCuentaWindow(this).open();
 	}
 	public void cargaMasiva()
 	{
-		new CargaMasivaWindow(this).open();
+		new CargaMasivaCuentaWindow(this).open();
 	}
 }

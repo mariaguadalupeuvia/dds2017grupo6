@@ -6,7 +6,8 @@ import java.util.Arrays;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.uqbar.commons.model.UserException;
+
+import negocio.dominio.excepciones.NoSePuedeAgregarMedibleException;
 
 public class PeriodoTest {
 
@@ -36,26 +37,26 @@ public class PeriodoTest {
 	@Test
 	public void agregarUnaCuenta() 
 	{
-		periodo.agregarCuenta(cuentaNueva);
+		periodo.agregarMedible(cuentaNueva);
 		
-		assertTrue(periodo.getCuentas().equals(Arrays.asList(cuentaNueva)));
+		assertTrue(periodo.getMedibles().equals(Arrays.asList(cuentaNueva)));
 	}
 	
 	@Test
 	public void agregarDosCuentasConDistintoNombre() 
 	{	
-		periodo.agregarCuenta(cuentaNueva);
-		periodo.agregarCuenta(cuentaDistinta);
+		periodo.agregarMedible(cuentaNueva);
+		periodo.agregarMedible(cuentaDistinta);
 		
-		int cantidadCuentasEnElPeriodo = periodo.getCuentas().size();
+		int cantidadCuentasEnElPeriodo = periodo.getMedibles().size();
 		
 		assertTrue(cantidadCuentasEnElPeriodo == 2);
 	}
 	
-	@Test(expected = UserException.class)
+	@Test(expected = NoSePuedeAgregarMedibleException.class)
 	public void agregarDosCuentasConElMismoNombre() 
 	{	
-		periodo.agregarCuenta(cuentaNueva);
-		periodo.agregarCuenta(cuentaIgual);
+		periodo.agregarMedible(cuentaNueva);
+		periodo.agregarMedible(cuentaIgual);
 	}
 }

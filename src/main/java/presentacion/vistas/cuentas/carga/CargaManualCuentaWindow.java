@@ -1,4 +1,4 @@
-package presentacion.vistas.carga.cuenta;
+package presentacion.vistas.cuentas.carga;
 
 import org.uqbar.arena.layout.ColumnLayout;
 import org.uqbar.arena.layout.VerticalLayout;
@@ -11,14 +11,14 @@ import org.uqbar.arena.widgets.TextBox;
 import org.uqbar.arena.windows.Dialog;
 import org.uqbar.arena.windows.WindowOwner;
 
-import presentacion.vm.carga.cuenta.CargaManualVM;
+import presentacion.vm.cuentas.carga.CargaManualCuentaVM;
 
 @SuppressWarnings("serial")
-public class CargaManualWindow extends Dialog<CargaManualVM>
+public class CargaManualCuentaWindow extends Dialog<CargaManualCuentaVM>
 {
-	public CargaManualWindow(WindowOwner owner) 
+	public CargaManualCuentaWindow(WindowOwner owner) 
 	{
-		super(owner, new CargaManualVM());
+		super(owner, new CargaManualCuentaVM());
 	}
 
 	@Override

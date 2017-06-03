@@ -1,4 +1,4 @@
-package presentacion.vistas.carga.cuenta;
+package presentacion.vistas.cuentas.carga;
 
 import java.io.IOException;
 
@@ -16,13 +16,13 @@ import org.uqbar.arena.windows.Dialog;
 import org.uqbar.arena.windows.WindowOwner;
 import org.uqbar.commons.model.UserException;
 
-import presentacion.vm.carga.cuenta.CargaMasivaVM;
+import presentacion.vm.cuentas.carga.CargaMasivaCuentaVM;
 
 @SuppressWarnings("serial")
-public class CargaMasivaWindow extends Dialog<CargaMasivaVM>{
+public class CargaMasivaCuentaWindow extends Dialog<CargaMasivaCuentaVM>{
 	
-	public CargaMasivaWindow(WindowOwner owner) {
-		super(owner, new CargaMasivaVM());
+	public CargaMasivaCuentaWindow(WindowOwner owner) {
+		super(owner, new CargaMasivaCuentaVM());
 	}
 
 	@Override

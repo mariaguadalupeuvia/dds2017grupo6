@@ -12,15 +12,26 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 
+import negocio.dominio.excepciones.FuenteInvalidaException;
+
 @SuppressWarnings("deprecation")
 public class FuenteExcel implements Fuente 
 {
 	private List<String> datos = new ArrayList<>();
 	
 	@Override
-	public void leerDatos(String ruta) throws EncryptedDocumentException, InvalidFormatException, IOException 
+	public void leerDatos(String ruta) 
 	{
-		Sheet hoja = WorkbookFactory.create(new File(ruta)).getSheetAt(0);
+		Sheet hoja = null;
+		
+		try 
+		{
+			hoja = WorkbookFactory.create(new File(ruta)).getSheetAt(0);
+		} 
+		catch (EncryptedDocumentException | InvalidFormatException | IOException e) 
+		{
+			throw new FuenteInvalidaException(e.getMessage());
+		}
 
 		hoja.forEach(filaSinFormato -> datos.add(formatearFila(filaSinFormato)));
 	}

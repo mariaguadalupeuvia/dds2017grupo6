@@ -3,6 +3,7 @@ package negocio.dominio.manejoArchivos.Parser;
 import negocio.dominio.Cuenta;
 import negocio.dominio.Empresa;
 import negocio.dominio.Periodo;
+import negocio.dominio.excepciones.FilaConFormatoIncorrectoException;
 
 public class ParserArchivo implements Parser
 {
@@ -11,17 +12,38 @@ public class ParserArchivo implements Parser
 	@Override
 	public Empresa parsear(String fila) 
 	{
-		String [] atributos = fila.split(delimitador.toString());
+		String[] atributos;
 		
-		if(atributos.length > 4)
+		try
 		{
-			throw new IndexOutOfBoundsException();
+			atributos = fila.split(delimitador.toString());
+		}
+		catch(NullPointerException e) 
+		{
+			throw new FilaConFormatoIncorrectoException("No se puede parsear una fila nula");
 		}
 		
-		String nombreEmpresa = atributos[0];
-		String nombreCuenta = atributos[1];
-		Integer añoPeriodo = Double.valueOf(atributos[2]).intValue();
-		Double valorCuenta = Double.valueOf(atributos[3]);
+		if(atributos.length > 4) 
+		{
+			throw new FilaConFormatoIncorrectoException("Formato incorrecto: existen columnas extra");
+		}
+		
+		String nombreEmpresa;
+		String nombreCuenta;
+		Integer añoPeriodo;
+		Double valorCuenta;
+		
+		try
+		{
+			nombreEmpresa = atributos[0];
+			nombreCuenta = atributos[1];
+			añoPeriodo = Double.valueOf(atributos[2]).intValue();
+			valorCuenta = Double.valueOf(atributos[3]);
+		}
+		catch(IllegalArgumentException | IndexOutOfBoundsException e) 
+		{
+			throw new FilaConFormatoIncorrectoException("Formato incorrecto: faltan columnas o el tipo no coincide");
+		}
 		
 		Empresa empresa = new Empresa();
 		Periodo periodo = new Periodo();
@@ -30,7 +52,7 @@ public class ParserArchivo implements Parser
 		cuenta.setNombre(nombreCuenta);
 		cuenta.setValor(valorCuenta);
 		periodo.setAño(añoPeriodo);
-		periodo.agregarCuenta(cuenta);
+		periodo.agregarMedible(cuenta);
 		empresa.setNombre(nombreEmpresa);
 		empresa.agregarPeriodo(periodo);
 			

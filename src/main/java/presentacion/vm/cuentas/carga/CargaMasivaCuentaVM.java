@@ -1,4 +1,4 @@
-package presentacion.vm.carga.cuenta;
+package presentacion.vm.cuentas.carga;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -15,7 +15,7 @@ import negocio.dominio.manejoArchivos.Parser.ParserArchivo;
 import negocio.repositorio.RepositorioEmpresas;
 
 @Observable
-public class CargaMasivaVM 
+public class CargaMasivaCuentaVM 
 {
 	private String rutaDelArchivo;
 	private String tipoArchivoSeleccionado;
