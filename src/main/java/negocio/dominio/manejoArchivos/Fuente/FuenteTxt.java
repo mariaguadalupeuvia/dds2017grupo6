@@ -1,7 +1,8 @@
-package negocio.dominio.manejoArchivos.Fuente;
+package negocio.dominio.manejoArchivos.fuente;
 
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.InvalidPathException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,9 +21,9 @@ public class FuenteTxt implements Fuente
 		{
 			datos = Files.lines(Paths.get(ruta)).collect(Collectors.toList());
 		} 
-		catch (IOException e) 
+		catch (IOException | InvalidPathException e)
 		{
-			throw new FuenteInvalidaException(e.getMessage());
+			throw new FuenteInvalidaException("Se produjo un error al acceder al archivo, es posible que la ruta no sea valida");
 		}
 	}
 

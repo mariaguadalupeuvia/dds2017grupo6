@@ -3,13 +3,13 @@ package negocio.dominio;
 import org.uqbar.commons.utils.Observable;
 
 @Observable
-public class Cuenta implements Medible
-{
-    private String nombre;
+public class Cuenta {
+    
+	private String nombre;
     private Double valor;
+ 
     
-    
-    
+	
 	//PROPIEDADES
     public String getNombre() {
 		return nombre;
@@ -23,7 +23,7 @@ public class Cuenta implements Medible
 	public void setValor(Double valor) {
 		this.valor = valor;
 	}
-	
+
 	@Override
 	public String toString()
 	{

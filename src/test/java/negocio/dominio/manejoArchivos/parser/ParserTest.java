@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import negocio.dominio.Empresa;
 import negocio.dominio.excepciones.FilaConFormatoIncorrectoException;
-import negocio.dominio.manejoArchivos.Parser.ParserArchivo;
+import negocio.dominio.manejoArchivos.parser.ParserArchivo;
 
 public class ParserTest {
 
@@ -29,8 +29,8 @@ public class ParserTest {
 		
 		assertEquals(empresa.getNombre(), "facebook");
 		assertTrue(empresa.getPeriodos().get(0).getAño() == 2017);
-		assertEquals(empresa.getPeriodos().get(0).getMedibles().get(0).getNombre(), "ebidata");
-		assertTrue(empresa.getPeriodos().get(0).getMedibles().get(0).getValor() == 1200000d);
+		assertEquals(empresa.getPeriodos().get(0).getCuentas().get(0).getNombre(), "ebidata");
+		assertTrue(empresa.getPeriodos().get(0).getCuentas().get(0).getValor() == 1200000d);
 	}
 	
 	@Test(expected = FilaConFormatoIncorrectoException.class)

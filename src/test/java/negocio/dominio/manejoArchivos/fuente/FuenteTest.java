@@ -9,7 +9,7 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import negocio.dominio.manejoArchivos.Fuente.FuenteExcel;
+import negocio.dominio.manejoArchivos.fuente.FuenteExcel;
 
 @SuppressWarnings("deprecation")
 public class FuenteTest {

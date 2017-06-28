@@ -7,7 +7,7 @@ import java.util.Arrays;
 import org.junit.Before;
 import org.junit.Test;
 
-import negocio.dominio.excepciones.NoSePuedeAgregarMedibleException;
+import negocio.dominio.excepciones.NoSePuedeAgregarCuentaException;
 
 public class PeriodoTest {
 
@@ -37,26 +37,26 @@ public class PeriodoTest {
 	@Test
 	public void agregarUnaCuenta() 
 	{
-		periodo.agregarMedible(cuentaNueva);
+		periodo.agregarCuenta(cuentaNueva);
 		
-		assertTrue(periodo.getMedibles().equals(Arrays.asList(cuentaNueva)));
+		assertTrue(periodo.getCuentas().equals(Arrays.asList(cuentaNueva)));
 	}
 	
 	@Test
 	public void agregarDosCuentasConDistintoNombre() 
 	{	
-		periodo.agregarMedible(cuentaNueva);
-		periodo.agregarMedible(cuentaDistinta);
+		periodo.agregarCuenta(cuentaNueva);
+		periodo.agregarCuenta(cuentaDistinta);
 		
-		int cantidadCuentasEnElPeriodo = periodo.getMedibles().size();
+		int cantidadCuentasEnElPeriodo = periodo.getCuentas().size();
 		
 		assertTrue(cantidadCuentasEnElPeriodo == 2);
 	}
 	
-	@Test(expected = NoSePuedeAgregarMedibleException.class)
+	@Test(expected = NoSePuedeAgregarCuentaException.class)
 	public void agregarDosCuentasConElMismoNombre() 
 	{	
-		periodo.agregarMedible(cuentaNueva);
-		periodo.agregarMedible(cuentaIgual);
+		periodo.agregarCuenta(cuentaNueva);
+		periodo.agregarCuenta(cuentaIgual);
 	}
 }

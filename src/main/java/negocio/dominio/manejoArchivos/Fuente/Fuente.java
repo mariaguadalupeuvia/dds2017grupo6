@@ -1,4 +1,4 @@
-package negocio.dominio.manejoArchivos.Fuente;
+package negocio.dominio.manejoArchivos.fuente;
 
 import java.util.List;
 

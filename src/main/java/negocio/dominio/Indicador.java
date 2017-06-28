@@ -1,63 +1,41 @@
 package negocio.dominio;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 import org.uqbar.commons.utils.Observable;
 
-import negocio.dominio.excepciones.NoExisteMedibleException;
+import negocio.dominio.excepciones.NoSePuedeRealizarElCalculoException;
+import negocio.dominio.manejoExpresiones.arbol.Expresion;
 
 @Observable
-public class Indicador implements Medible
-{
-	private Periodo periodo;
-	private Formula formula;
+public class Indicador {
 
-	@Override
-	public String getNombre() {
-		return formula.getNombre();
+	private String nombre;
+	private Expresion expresion;
+	private String formula;
+
+	public Double calcularValor(Contexto contexto) throws NoSePuedeRealizarElCalculoException {
+		
+		return expresion.evaluate(contexto);			
 	}
 	
-	@Override
-	public Double getValor() {
-		
-		List<Double> valores;
-		
-		try 
-		{
-			valores = obtenerValoresDeIncognitas();
-		}
-		catch (NoExisteMedibleException e) 
-		{
-			return null;
-		}
-		
-		return formula.calcularExpresion(valores);
-	}
-	
-	private List<Double> obtenerValoresDeIncognitas() throws NoExisteMedibleException {
-
-		return formula.getIncognitas().stream()
-				.map(incognita ->periodo.buscarMedible(incognita).getValor())
-				.collect(Collectors.toList());
-	}
-
 	
 	
-	//PROPIEDADES
-	public Indicador(Periodo periodo, Formula formula) {
-		
-		this.periodo = periodo;
+	//PROPIEDADES Y CONSTRUCTOR
+	public Indicador(String nombre, Expresion expresion, String formula) 
+	{
+		this.nombre = nombre;
+		this.expresion = expresion;
 		this.formula = formula;
 	}
-	
-	public Formula getFormula() {
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public String getFormula() {
 		return formula;
 	}
-		
-	@Override
-	public String toString()
-	{
-		return formula.getNombre();
+
+	public void setFormula(String formula) {
+		this.formula = formula;
 	}
 }

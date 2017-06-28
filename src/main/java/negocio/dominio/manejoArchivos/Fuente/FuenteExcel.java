@@ -1,4 +1,4 @@
-package negocio.dominio.manejoArchivos.Fuente;
+package negocio.dominio.manejoArchivos.fuente;
 
 import java.io.File;
 import java.io.IOException;
@@ -28,9 +28,13 @@ public class FuenteExcel implements Fuente
 		{
 			hoja = WorkbookFactory.create(new File(ruta)).getSheetAt(0);
 		} 
-		catch (EncryptedDocumentException | InvalidFormatException | IOException e) 
+		catch (InvalidFormatException | IOException e) 
 		{
-			throw new FuenteInvalidaException(e.getMessage());
+			throw new FuenteInvalidaException("Se produjo un error al acceder al archivo, es posible que la ruta no sea valida");
+		}
+		catch (EncryptedDocumentException e2)
+		{
+			throw new FuenteInvalidaException("Se produjo un error al leer el archivo debido a que esta encriptado");
 		}
 
 		hoja.forEach(filaSinFormato -> datos.add(formatearFila(filaSinFormato)));

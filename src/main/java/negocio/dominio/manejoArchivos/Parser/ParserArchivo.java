@@ -1,4 +1,4 @@
-package negocio.dominio.manejoArchivos.Parser;
+package negocio.dominio.manejoArchivos.parser;
 
 import negocio.dominio.Cuenta;
 import negocio.dominio.Empresa;
@@ -10,7 +10,7 @@ public class ParserArchivo implements Parser
 	private Character delimitador;
 	
 	@Override
-	public Empresa parsear(String fila) 
+	public Empresa parsear(String fila)
 	{
 		String[] atributos;
 		
@@ -49,10 +49,10 @@ public class ParserArchivo implements Parser
 		Periodo periodo = new Periodo();
 		Cuenta cuenta = new Cuenta();
 			
-		cuenta.setNombre(nombreCuenta);
+		cuenta.setNombre(nombreCuenta.trim().replace(" ","_"));
 		cuenta.setValor(valorCuenta);
 		periodo.setAño(añoPeriodo);
-		periodo.agregarMedible(cuenta);
+		periodo.agregarCuenta(cuenta);
 		empresa.setNombre(nombreEmpresa);
 		empresa.agregarPeriodo(periodo);
 			

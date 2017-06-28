@@ -16,10 +16,10 @@ public class RepositorioEmpresas
 	
 	public static void agregarVariasEmpresas(List<Empresa> empresasNuevas) 
 	{
-		empresasNuevas.forEach(empresaNueva -> agregarEmpresa(empresaNueva));
+		empresasNuevas.forEach(empresaNueva -> agregarEmpresa(empresaNueva));	
 	}
 	
-	public static void agregarEmpresa(Empresa empresaNueva) 
+	public static void agregarEmpresa(Empresa empresaNueva)
 	{
 		if (!existeEmpresaDeNombre(empresaNueva.getNombre())) 
 		{

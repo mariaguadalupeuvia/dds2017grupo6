@@ -4,8 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import negocio.dominio.Empresa;
-import negocio.dominio.manejoArchivos.Fuente.Fuente;
-import negocio.dominio.manejoArchivos.Parser.Parser;
+import negocio.dominio.excepciones.NoSePuedeAgregarCuentaException;
+import negocio.dominio.manejoArchivos.fuente.Fuente;
+import negocio.dominio.manejoArchivos.parser.Parser;
 
 public class Importador 
 {
@@ -16,14 +17,22 @@ public class Importador
 	{
 		fuente.leerDatos(ruta);
 	}
+	
 	public List<Empresa> parsearDatos()
 	{
 		List<Empresa> empresas = new ArrayList<>();
 		
 		fuente.getDatos().forEach(fila -> {
 			
-			Empresa empresa = parser.parsear(fila);
-			empresas.add(empresa);
+			try 
+			{
+				Empresa empresa = parser.parsear(fila);
+				empresas.add(empresa);
+			} 
+			catch (NoSePuedeAgregarCuentaException e) 
+			{
+				//Aca se desidió no debe hacer nada
+			}
 		});
 		
 		return empresas;

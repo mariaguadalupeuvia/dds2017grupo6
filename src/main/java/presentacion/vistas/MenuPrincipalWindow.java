@@ -7,8 +7,8 @@ import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
 
 import presentacion.utils.Graficos;
-import presentacion.vistas.cuentas.MenuCuentaWindow;
-import presentacion.vistas.indicadores.MenuIndicadorWindow;
+import presentacion.vistas.cuentas.CuentaWindow;
+import presentacion.vistas.indicadores.IndicadorWindow;
 import presentacion.vm.MenuPrincipalVM;
 
 @SuppressWarnings("serial")
@@ -44,10 +44,10 @@ public class MenuPrincipalWindow extends SimpleWindow<MenuPrincipalVM>
 	
 	public void cuentas()
 	{
-		new MenuCuentaWindow(this).open();
+		new CuentaWindow(this).open();
 	}
 	public void indicadores()
 	{
-		new MenuIndicadorWindow(this).open();
+		new IndicadorWindow(this).open();
 	}
 }

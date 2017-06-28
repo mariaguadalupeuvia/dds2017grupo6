@@ -1,4 +1,4 @@
-package negocio.dominio.manejoArchivos.Parser;
+package negocio.dominio.manejoArchivos.parser;
 
 import negocio.dominio.Empresa;
 
