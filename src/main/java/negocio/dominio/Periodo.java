@@ -12,17 +12,9 @@ public class Periodo
     private Integer año;
     private List<Cuenta> cuentas = new ArrayList<>();
     
-    public void agregarVariasCuentas(List<Cuenta> cuentasNuevas)
+    public void agregarVariasCuentas(List<Cuenta> cuentasNuevas) throws NoSePuedeAgregarCuentaException
     {
-    	cuentasNuevas.forEach(cuentaNueva -> {
-			try 
-			{
-				agregarCuenta(cuentaNueva);
-			} 
-			catch (NoSePuedeAgregarCuentaException e) {
-				//Aca se desidió no debe hacer nada
-			}
-		});
+    	cuentasNuevas.forEach(cuentaNueva -> agregarCuenta(cuentaNueva));
 	}
     
     public void agregarCuenta(Cuenta cuentaNueva) throws NoSePuedeAgregarCuentaException

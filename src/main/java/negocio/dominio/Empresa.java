@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.uqbar.commons.utils.Observable;
 
+import negocio.dominio.excepciones.NoSePuedeAgregarCuentaException;
+
 @Observable
 public class Empresa 
 {
@@ -12,12 +14,12 @@ public class Empresa
 	private List<Periodo> periodos = new ArrayList<>();
 	
 	
-	public void agregarVariosPeriodos(List<Periodo> periodosNuevos)
+	public void agregarVariosPeriodos(List<Periodo> periodosNuevos) throws NoSePuedeAgregarCuentaException
 	{
 		periodosNuevos.forEach(periodoNuevo -> agregarPeriodo(periodoNuevo));
 	}
 	
-	public void agregarPeriodo(Periodo periodoNuevo)
+	public void agregarPeriodo(Periodo periodoNuevo) throws NoSePuedeAgregarCuentaException
 	{
 		if (!existePeriodoDeAño(periodoNuevo.getAño())) 
 		{

@@ -8,6 +8,7 @@ import org.uqbar.commons.utils.Observable;
 
 import negocio.dominio.excepciones.FilaConFormatoIncorrectoException;
 import negocio.dominio.excepciones.FuenteInvalidaException;
+import negocio.dominio.excepciones.NoSePuedeAgregarCuentaException;
 import negocio.dominio.manejoArchivos.Importador;
 import negocio.dominio.manejoArchivos.fuente.FuenteExcel;
 import negocio.dominio.manejoArchivos.fuente.FuenteTxt;
@@ -36,6 +37,10 @@ public class CargaMasivaCuentaVM
 			importador.obtenerDatos(rutaDelArchivo);
 			
 			RepositorioEmpresas.agregarVariasEmpresas(importador.parsearDatos());
+		}
+		catch(NoSePuedeAgregarCuentaException e)
+		{
+			throw new UserException("Algunas cuentas no se agregaron debido a que estaban duplicadas");
 		}
 		catch(FuenteInvalidaException | FilaConFormatoIncorrectoException e)
 		{

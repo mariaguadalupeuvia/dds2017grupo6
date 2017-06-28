@@ -18,21 +18,14 @@ public class Importador
 		fuente.leerDatos(ruta);
 	}
 	
-	public List<Empresa> parsearDatos()
+	public List<Empresa> parsearDatos() throws NoSePuedeAgregarCuentaException
 	{
 		List<Empresa> empresas = new ArrayList<>();
 		
 		fuente.getDatos().forEach(fila -> {
 			
-			try 
-			{
-				Empresa empresa = parser.parsear(fila);
-				empresas.add(empresa);
-			} 
-			catch (NoSePuedeAgregarCuentaException e) 
-			{
-				//Aca se desidió no debe hacer nada
-			}
+			Empresa empresa = parser.parsear(fila);
+			empresas.add(empresa);
 		});
 		
 		return empresas;

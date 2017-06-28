@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import negocio.dominio.Empresa;
+import negocio.dominio.excepciones.NoSePuedeAgregarCuentaException;
 
 public class RepositorioEmpresas 
 {
@@ -14,12 +15,12 @@ public class RepositorioEmpresas
 		empresas = new ArrayList<>();
 	}
 	
-	public static void agregarVariasEmpresas(List<Empresa> empresasNuevas) 
+	public static void agregarVariasEmpresas(List<Empresa> empresasNuevas) throws NoSePuedeAgregarCuentaException
 	{
 		empresasNuevas.forEach(empresaNueva -> agregarEmpresa(empresaNueva));	
 	}
 	
-	public static void agregarEmpresa(Empresa empresaNueva)
+	public static void agregarEmpresa(Empresa empresaNueva) throws NoSePuedeAgregarCuentaException
 	{
 		if (!existeEmpresaDeNombre(empresaNueva.getNombre())) 
 		{

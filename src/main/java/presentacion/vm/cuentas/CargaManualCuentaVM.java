@@ -20,7 +20,7 @@ public class CargaManualCuentaVM {
 	
 	public void guardarEmpresa() 
 	{
-		if ((nombreCuenta == null) || (valorCuenta == null) || (añoPeriodo == null) || (nombreEmpresa == null)) 
+		if (nombreCuenta == null || valorCuenta == null || añoPeriodo == null | nombreEmpresa == null) 
 		{
 			throw new UserException("Falta completar campos obligatorios");
 		}
