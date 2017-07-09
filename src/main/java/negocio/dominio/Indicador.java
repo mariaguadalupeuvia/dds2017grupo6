@@ -38,4 +38,9 @@ public class Indicador {
 	public void setFormula(String formula) {
 		this.formula = formula;
 	}
+
+	@Override
+	public String toString() {
+		return nombre;
+	}
 }

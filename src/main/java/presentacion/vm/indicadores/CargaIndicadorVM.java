@@ -35,7 +35,7 @@ public class CargaIndicadorVM {
 		{
 			Expresion expresion = new ParserExpresion().parsear(expresionPlana);
 		
-			Indicador indicador = new Indicador(nombreIndicador.trim().replace(" ","_"), expresion, expresionPlana);
+			Indicador indicador = new Indicador(nombreIndicador, expresion, expresionPlana);
 		
 			RepositorioIndicadores.agregarIndicador(indicador);
 			

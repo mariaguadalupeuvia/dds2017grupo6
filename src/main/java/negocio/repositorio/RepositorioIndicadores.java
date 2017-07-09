@@ -55,6 +55,6 @@ public class RepositorioIndicadores
 	}
 	public static void setIndicadores(List<Indicador> indicadoresNuevos)
 	{
-		indicadores = new ArrayList<>(indicadoresNuevos);
+		indicadores = indicadoresNuevos;
 	}
 }

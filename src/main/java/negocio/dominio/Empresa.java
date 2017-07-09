@@ -1,6 +1,7 @@
 package negocio.dominio;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import org.uqbar.commons.utils.Observable;
@@ -52,6 +53,9 @@ public class Empresa
 		this.nombre = nombre;
 	}
 	public List<Periodo> getPeriodos() {
+		 
+		periodos.sort(Comparator.comparing(Periodo::getAño));
+		 
 		return periodos;
 	}
 	public void setPeriodos(List<Periodo> periodos) {

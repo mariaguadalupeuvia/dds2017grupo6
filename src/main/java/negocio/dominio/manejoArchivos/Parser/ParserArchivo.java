@@ -49,7 +49,7 @@ public class ParserArchivo implements Parser
 		Periodo periodo = new Periodo();
 		Cuenta cuenta = new Cuenta();
 			
-		cuenta.setNombre(nombreCuenta.trim().replace(" ","_"));
+		cuenta.setNombre(nombreCuenta);
 		cuenta.setValor(valorCuenta);
 		periodo.setAño(añoPeriodo);
 		periodo.agregarCuenta(cuenta);

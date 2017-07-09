@@ -9,6 +9,7 @@ import org.uqbar.arena.windows.WindowOwner;
 import presentacion.utils.Graficos;
 import presentacion.vistas.cuentas.CuentaWindow;
 import presentacion.vistas.indicadores.IndicadorWindow;
+import presentacion.vistas.metodologias.MetodologiaWindow;
 import presentacion.vm.MenuPrincipalVM;
 
 @SuppressWarnings("serial")
@@ -36,18 +37,10 @@ public class MenuPrincipalWindow extends SimpleWindow<MenuPrincipalVM>
 		
 		Graficos.graficarEspacio(botonera, 360);
 		
-		new Button(botonera).setCaption("1. Cuentas").onClick(this::cuentas).setWidth(200);
-		new Button(botonera).setCaption("2. Indicadores").onClick(this::indicadores).setWidth(200);
+		new Button(botonera).setCaption("1. Cuentas").onClick(() -> new CuentaWindow(this).open()).setWidth(200);
+		new Button(botonera).setCaption("2. Indicadores").onClick(() -> new IndicadorWindow(this).open()).setWidth(200);
+		new Button(botonera).setCaption("3. Metodologias").onClick(() -> new MetodologiaWindow(this).open()).setWidth(200);
 		
 		Graficos.graficarBorde(botonera, 360);
-	}
-	
-	public void cuentas()
-	{
-		new CuentaWindow(this).open();
-	}
-	public void indicadores()
-	{
-		new IndicadorWindow(this).open();
 	}
 }

@@ -1,4 +1,4 @@
-package negocio.dominio.fixture;
+package negocio.dominio.fixtures;
 
 import java.util.Arrays;
 import java.util.List;

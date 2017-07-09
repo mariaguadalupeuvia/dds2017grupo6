@@ -39,8 +39,10 @@ public class IndicadorVM
 		{
 			throw new UserException("Hace falta seleccionar un periodo y una empresa para continuar");
 		}
-		
-		indicadores.forEach(indicador -> clasificarIndicador(indicador));
+		else 
+		{
+			indicadores.forEach(indicador -> clasificarIndicador(indicador));
+		}
 	}
 	
 	private void clasificarIndicador(Indicador indicador) {
