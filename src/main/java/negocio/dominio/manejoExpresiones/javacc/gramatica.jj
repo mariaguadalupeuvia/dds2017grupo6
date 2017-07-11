@@ -1,0 +1,95 @@
+options
+{
+   IGNORE_CASE = true;
+   STATIC = false;
+   ERROR_REPORTING = false;
+   SANITY_CHECK = false;
+}
+
+
+
+PARSER_BEGIN(ParserExpresiones)
+package negocio.dominio.manejoExpresiones.javacc;
+
+import negocio.dominio.manejoExpresiones.arbol.*;
+import negocio.dominio.manejoExpresiones.arbol.operaciones.*;
+
+public class ParserExpresiones { }
+PARSER_END(ParserExpresiones)
+
+
+
+
+
+SKIP:
+{
+	  " "
+	| "\r"
+	| "\t"
+}
+
+
+TOKEN:
+{
+	  <CONSTANTE: (["0"-"9"])+ ("." (["0"-"9"])+)?>
+	| <INCOGNITA: ["A"-"Z", "a"-"z"] (["A"-"Z", "a"-"z", "0"-"9"])*>
+}
+
+
+Expresion parsear() :
+{
+  Expresion a;
+}
+{
+	  a = expresion() <EOF> 		{ return a; }
+}
+
+Expresion expresion() :
+{
+  Expresion a;
+  Expresion b;
+}
+{
+  	a = termino()
+  	(
+		  "+" b = termino() {a = new Suma(a,b);}
+		| "-" b = termino() {a = new Resta(a,b);}
+	)*
+	{return a;}
+}
+
+Expresion termino() :
+{
+  Expresion a;
+  Expresion b;
+}
+{
+  	a = elemento()
+  	(
+		  "*" b = elemento() {a = new Multiplicacion(a,b);}
+		| "/" b = elemento() {a = new Division(a,b);}
+	)*
+	{return a;}
+}
+
+
+/*
+ESTO NO LO PUDE HACER ANDAR
+void unario() :
+{ }
+{
+ <MENOS> elemento()
+| elemento()
+}
+*/
+
+
+Expresion elemento() :
+{
+  Expresion a;
+}
+{
+	  <CONSTANTE>				{return new Constante(Double.valueOf(token.image));}
+	| <INCOGNITA>				{return new Incognita(token.image);}
+	| "(" a = expresion() ")" 	{return a;}							
+} 
