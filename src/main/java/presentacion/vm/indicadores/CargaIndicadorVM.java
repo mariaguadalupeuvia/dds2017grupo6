@@ -7,10 +7,10 @@ import org.uqbar.commons.model.UserException;
 import org.uqbar.commons.utils.Observable;
 
 import negocio.dominio.Indicador;
+import negocio.dominio.excepciones.ExpresionInvalidaException;
 import negocio.dominio.excepciones.NoSePuedeAgregarIndicadorException;
-import negocio.dominio.manejoExpresiones.ParserExpresion;
+import negocio.dominio.manejoExpresiones.ParserExpresionesAdapter;
 import negocio.dominio.manejoExpresiones.arbol.Expresion;
-import negocio.dominio.manejoExpresiones.gramatica.ExpresionInvalidaException;
 import negocio.repositorio.RepositorioIndicadores;
 
 @Observable
@@ -33,7 +33,7 @@ public class CargaIndicadorVM {
 		
 		try
 		{
-			Expresion expresion = new ParserExpresion().parsear(expresionPlana);
+			Expresion expresion = new ParserExpresionesAdapter().parsear(expresionPlana);
 		
 			Indicador indicador = new Indicador(nombreIndicador, expresion, expresionPlana);
 		
@@ -47,7 +47,7 @@ public class CargaIndicadorVM {
 		} 
 		catch (ExpresionInvalidaException e) 
 		{
-			throw new UserException("Debe ingresar una expresion valida");
+			throw new UserException("Debe ingresar una expresion valida: " + e.getMessage());
 		} 
 	}
 	

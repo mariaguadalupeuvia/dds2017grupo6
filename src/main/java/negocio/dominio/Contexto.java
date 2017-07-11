@@ -33,8 +33,11 @@ public class Contexto {
 	
 	public Cuenta buscarCuenta(String nombre) throws NoExisteCuentaException {
 		 
-		 return cuentas.stream().filter(cuenta -> cuenta.getNombre().equals(nombre)).
-				 findAny().orElseThrow(() -> new NoExisteCuentaException("La cuenta: " + nombre + " no esta cargada"));
+		 return cuentas
+				 .stream()
+				 .filter(cuenta -> cuenta.getNombre().equals(nombre))
+				 .findAny()
+				 .orElseThrow(() -> new NoExisteCuentaException("La cuenta: " + nombre + " no esta cargada"));
 	 }
 	
 	 
