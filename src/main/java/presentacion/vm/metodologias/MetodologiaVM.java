@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.uqbar.commons.utils.Observable;
 
+import negocio.dominio.Empresa;
+import negocio.dominio.EmpresaNoEvaluada;
 import negocio.dominio.Metodologia;
 import negocio.repositorio.RepositorioEmpresas;
 import negocio.repositorio.RepositorioMetodologias;
@@ -15,22 +17,18 @@ public class MetodologiaVM
 	private List<Metodologia> metodologias;
 	private Metodologia metodologiaSeleccionada;
 	
-	private List<EmpresaEvaluada> empresasEvaluadas;
-
 	
 	public MetodologiaVM()
 	{
 		metodologias = RepositorioMetodologias.getMetodologias();
-		empresasEvaluadas = new ArrayList<>();
 	}
 	
 	public void aplicarMetodologia() 
 	{
-		 metodologiaSeleccionada
-		 .evaluar(RepositorioEmpresas.getEmpresas())
-		 .forEach( empresa -> empresasEvaluadas.add(new EmpresaEvaluada(empresa.getNombre())));
+		setEmpresasEvaluadas(metodologiaSeleccionada.evaluar(RepositorioEmpresas.getEmpresas()));
 	}
 
+	
 	
 	//PROPIEDADES
 	public Metodologia getMetodologiaSeleccionada() {
@@ -48,12 +46,4 @@ public class MetodologiaVM
 	public void setMetodologias(List<Metodologia> metodologias) {
 		this.metodologias = metodologias;
 	}
-
-	public List<EmpresaEvaluada> getEmpresasEvaluadas() {
-		return empresasEvaluadas;
-	}
-
-	public void setEmpresasEvaluadas(List<EmpresaEvaluada> empresasEvaluadas) {
-		this.empresasEvaluadas = empresasEvaluadas;
-	}	
 }

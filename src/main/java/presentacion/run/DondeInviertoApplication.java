@@ -21,7 +21,8 @@ public class DondeInviertoApplication extends Application
 		RepositorioMetodologias.inicializarRepositorio();
 		
 		RepositorioIndicadores.agregarPredefinidos(new FixtureIndicadoresPredefinidos().getIndicadores());
-		RepositorioCriterios.agregarPredefinidos(new FixtureCriteriosPredefinidos().getCriterios());
+		RepositorioCriterios.agregarCriteriosFiltradoPredefinidos(new FixtureCriteriosPredefinidos().getCriteriosFiltrado());
+		RepositorioCriterios.agregarCriteriosOrdenamientoPredefinidos(new FixtureCriteriosPredefinidos().getCriteriosOrdenamiento());
 		
 		new DondeInviertoApplication().start();
 	}

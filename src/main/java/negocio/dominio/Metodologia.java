@@ -1,63 +1,61 @@
 package negocio.dominio;
 
-import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
-import negocio.dominio.condiciones.Condicion;
-
+import negocio.dominio.condiciones.CondicionFiltrado;
+import negocio.dominio.condiciones.CondicionOrdenamiento;
 
 public class Metodologia {
 
 	private String nombre;
+	private List<CondicionFiltrado> condicionesFiltrado;
+	private List<CondicionOrdenamiento> condicionesOrdenamiento;
 	
-	private List<Condicion> condicionesDeFiltro;
-	private List<Condicion> condicionesDeOrden;
-	
-	public Metodologia(String nombre,  List<Condicion> condiciones) {
+	public Metodologia(String nombre,  List<CondicionFiltrado> condicionesFiltrado, List<CondicionOrdenamiento> condicionesOrdenamiento) {
 
 		this.nombre = nombre;
-		this.condicionesDeFiltro = condiciones.stream().filter(c -> c.getPrioridad() == 0).collect(Collectors.toList());
-		this.condicionesDeOrden = condiciones.stream().filter(c ->  c.getPrioridad() != 0).collect(Collectors.toList());
+		this.condicionesFiltrado = condicionesFiltrado;
+		this.condicionesOrdenamiento = condicionesOrdenamiento;
 	}
 
-	public List<Empresa> evaluar(List<Empresa> empresasDesordenadas) {
-		
-		return empresasDesordenadas.stream()
-				.filter(e -> pasaTodosLosFiltros(e))
-				.sorted((e1, e2) -> comparar(e1, e2)).collect(Collectors.toList());
-		
-	}
-	
-	
-	private boolean pasaTodosLosFiltros(Empresa e) {
 
-		return condicionesDeFiltro.stream().allMatch(filtro -> filtro.evaluar(e, null));
-	}
-	
-	
-	private Integer comparar(Empresa unaEmpresa, Empresa otraEmpresa) {
-
-		condicionesDeOrden.sort(Comparator.comparing(Condicion::getPrioridad));
-		
-		int i = 0;
-		int resultado = 0;
-		
-		if (condicionesDeOrden.size() > 0) {
-			while (resultado == 0) {
-				Condicion condicion = condicionesDeOrden.get(i);
-				if(condicion.evaluar(unaEmpresa, otraEmpresa))
-					resultado = 1;
-				else if(condicion.evaluar(otraEmpresa,unaEmpresa))
-					resultado = -1;
-				else
-					resultado = 0;
-
-				i++;
-			}
-		}
-		return resultado;
-	}
+//	public void evaluar(List<Empresa> empresasSinEvaluar) {
+//		
+//		empresasSinEvaluar.stream()
+//		.filter(empresa -> pasaTodosLosFiltros(empresa))
+//		.sorted((unaEmpresa, otraEmpresa) -> comparar(unaEmpresa, otraEmpresa))
+//		.collect(Collectors.toList());
+//	}
+//	
+//	
+//	private boolean pasaTodosLosFiltros(Empresa empresa) {
+//		
+//		return condicionesFiltrado.stream().allMatch(filtro -> filtro.cumple(empresa));
+//	}
+//	
+//	
+//	//ARREGLAR ESTO QUE ES UN ASCO
+//	private Integer comparar(Empresa unaEmpresa, Empresa otraEmpresa) {
+//
+//		return 0;
+//		condicionesOrdenamiento.sort(Comparator.comparing(CondicionOrdenamiento::getPrioridad));
+//		
+//		int i = 0;
+//		int resultado = 0;
+//		
+//		if (condicionesOrdenamiento.size() > 0) {
+//			
+//			while (resultado == 0) {
+//				
+//				CondicionOrdenamiento condicion = condicionesOrdenamiento.get(i);
+//				
+//				resultado = condicion.comparar(unaEmpresa, otraEmpresa);
+//
+//				i++;
+//			}
+//		}
+//		return resultado;
+//	}
 	
 	@Override
 	public String toString() {

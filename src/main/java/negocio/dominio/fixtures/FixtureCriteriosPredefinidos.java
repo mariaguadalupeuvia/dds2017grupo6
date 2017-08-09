@@ -3,27 +3,32 @@ package negocio.dominio.fixtures;
 import java.util.Arrays;
 import java.util.List;
 
-import negocio.dominio.condiciones.criterios.Criterio;
-import negocio.dominio.condiciones.criterios.deFiltro.MayorA;
-import negocio.dominio.condiciones.criterios.deFiltro.MenorA;
-import negocio.dominio.condiciones.criterios.deFiltro.PromedioMayorA;
-import negocio.dominio.condiciones.criterios.deFiltro.PromedioMenorA;
-import negocio.dominio.condiciones.criterios.deFiltro.SiempreCreciente;
-import negocio.dominio.condiciones.criterios.deFiltro.SiempreDecreciente;
-import negocio.dominio.condiciones.criterios.deFiltro.SumatoriaMayorA;
-import negocio.dominio.condiciones.criterios.deFiltro.SumatoriaMenorA;
-import negocio.dominio.condiciones.criterios.deOrden.MayorToMenor;
-import negocio.dominio.condiciones.criterios.deOrden.MenorToMayor;
+import negocio.dominio.condiciones.criterios.filtrado.CriterioFiltrado;
+import negocio.dominio.condiciones.criterios.filtrado.MayorA;
+import negocio.dominio.condiciones.criterios.filtrado.MenorA;
+import negocio.dominio.condiciones.criterios.filtrado.PromedioMayorA;
+import negocio.dominio.condiciones.criterios.filtrado.PromedioMenorA;
+import negocio.dominio.condiciones.criterios.filtrado.SiempreCreciente;
+import negocio.dominio.condiciones.criterios.filtrado.SiempreDecreciente;
+import negocio.dominio.condiciones.criterios.filtrado.SumatoriaMayorA;
+import negocio.dominio.condiciones.criterios.filtrado.SumatoriaMenorA;
+import negocio.dominio.condiciones.criterios.ordenamiento.CriterioOrdenamiento;
+import negocio.dominio.condiciones.criterios.ordenamiento.MayorToMenor;
+import negocio.dominio.condiciones.criterios.ordenamiento.MenorToMayor;
 
 public class FixtureCriteriosPredefinidos {
 
-	public List<Criterio> getCriterios()
+	public List<CriterioFiltrado> getCriteriosFiltrado()
 	{
 		return Arrays.asList(
 				new MayorA(), new MenorA(), 
 				new PromedioMayorA(), new PromedioMenorA(), 
 				new SiempreCreciente(), new SiempreDecreciente(), 
-				new SumatoriaMayorA(), new SumatoriaMenorA(), 
-				new MenorToMayor(), new MayorToMenor());
+				new SumatoriaMayorA(), new SumatoriaMenorA());
+	}
+	
+	public List<CriterioOrdenamiento> getCriteriosOrdenamiento() 
+	{
+		return Arrays.asList(new MenorToMayor(), new MayorToMenor());
 	}
 }

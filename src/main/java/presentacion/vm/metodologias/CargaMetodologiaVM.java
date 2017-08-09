@@ -3,15 +3,12 @@ package presentacion.vm.metodologias;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.uqbar.commons.model.ObservableUtils;
 import org.uqbar.commons.utils.Observable;
 
-import negocio.dominio.Indicador;
 import negocio.dominio.Metodologia;
-import negocio.dominio.condiciones.Condicion;
-import negocio.dominio.condiciones.criterios.Criterio;
-import negocio.repositorio.RepositorioCriterios;
-import negocio.repositorio.RepositorioIndicadores;
+import negocio.dominio.condiciones.CondicionFiltrado;
+import negocio.dominio.condiciones.CondicionOrdenamiento;
+
 import negocio.repositorio.RepositorioMetodologias;
 
 @Observable
@@ -19,38 +16,23 @@ public class CargaMetodologiaVM
 {
 	private String nombreMetodologia;
 	
-	private List<Indicador> indicadores;
-	private Indicador indicadorSeleccionado;
+	private List<CondicionFiltrado> condicionesFiltrado = new ArrayList<>();
+	private List<CondicionOrdenamiento> condicionesOrdenamiento = new ArrayList<>();
 	
-	private List<Criterio> criterios;
-	private Criterio criterioSeleccionado;
+	public void agregarCondicionFiltrado(CondicionFiltrado condicionFiltrado) 
+	{
+		condicionesFiltrado.add(condicionFiltrado);
+	}
 	
-	private Double valor;
-	private Integer cantidadPeriodos;
-	private Integer prioridad;
-	
-	private List<Condicion> condiciones = new ArrayList<>();
-	
-	
-	public CargaMetodologiaVM() {
-		
-		indicadores = RepositorioIndicadores.getIndicadores();
-		criterios = RepositorioCriterios.getCriterios();
+	public void agregarCondicionOrdenamiento(CondicionOrdenamiento condicionOrdenamiento) 
+	{
+		condicionesOrdenamiento.add(condicionOrdenamiento);
 	}
 	
 	public void guardarMetodologia() 
 	{
-		RepositorioMetodologias.agregarMetodologia(new Metodologia(nombreMetodologia, condiciones));
+		RepositorioMetodologias.agregarMetodologia(new Metodologia(nombreMetodologia, condicionesFiltrado, condicionesOrdenamiento));
 	}
-
-
-	public void agregarCondicion() 
-	{	
-		condiciones.add(new Condicion(criterioSeleccionado, indicadorSeleccionado, valor, cantidadPeriodos, prioridad));
-		
-		ObservableUtils.firePropertyChanged(this, "condiciones");
-	}
-
 	
 	
 	
@@ -63,67 +45,19 @@ public class CargaMetodologiaVM
 		this.nombreMetodologia = nombreMetodologia;
 	}
 
-	public List<Indicador> getIndicadores() {
-		return indicadores;
+	public List<CondicionFiltrado> getCondicionesFiltrado() {
+		return condicionesFiltrado;
 	}
 
-	public void setIndicadores(List<Indicador> indicadores) {
-		this.indicadores = indicadores;
+	public void setCondicionesFiltrado(List<CondicionFiltrado> condicionesFiltrado) {
+		this.condicionesFiltrado = condicionesFiltrado;
 	}
 
-	public Indicador getIndicadorSeleccionado() {
-		return indicadorSeleccionado;
+	public List<CondicionOrdenamiento> getCondicionesOrdenamiento() {
+		return condicionesOrdenamiento;
 	}
 
-	public void setIndicadorSeleccionado(Indicador indicadorSeleccionado) {
-		this.indicadorSeleccionado = indicadorSeleccionado;
-	}
-
-	public List<Criterio> getCriterios() {
-		return criterios;
-	}
-
-	public void setCriterios(List<Criterio> criterios) {
-		this.criterios = criterios;
-	}
-
-	public Criterio getCriterioSeleccionado() {
-		return criterioSeleccionado;
-	}
-
-	public void setCriterioSeleccionado(Criterio criterioSeleccionado) {
-		this.criterioSeleccionado = criterioSeleccionado;
-	}
-
-	public Double getValor() {
-		return valor;
-	}
-
-	public void setValor(Double valor) {
-		this.valor = valor;
-	}
-
-	public Integer getCantidadPeriodos() {
-		return cantidadPeriodos;
-	}
-
-	public void setCantidadPeriodos(Integer cantidadPeriodos) {
-		this.cantidadPeriodos = cantidadPeriodos;
-	}
-
-	public Integer getPrioridad() {
-		return prioridad;
-	}
-
-	public void setPrioridad(Integer prioridad) {
-		this.prioridad = prioridad;
-	}
-
-	public List<Condicion> getCondiciones() {
-		return condiciones;
-	}
-
-	public void setCondiciones(List<Condicion> condiciones) {
-		this.condiciones = condiciones;
+	public void setCondicionesOrdenamiento(List<CondicionOrdenamiento> condicionesOrdenamiento) {
+		this.condicionesOrdenamiento = condicionesOrdenamiento;
 	}
 }

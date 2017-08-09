@@ -3,31 +3,47 @@ package negocio.repositorio;
 import java.util.ArrayList;
 import java.util.List;
 
-import negocio.dominio.condiciones.criterios.Criterio;
+import negocio.dominio.condiciones.criterios.filtrado.CriterioFiltrado;
+import negocio.dominio.condiciones.criterios.ordenamiento.CriterioOrdenamiento;
 
 public class RepositorioCriterios {
 
 
-	private static List<Criterio> criterios;
+	private static List<CriterioFiltrado> criteriosFiltrado;
+	private static List<CriterioOrdenamiento> criteriosOrdenamiento;
 	
 	public static void inicializarRepositorio()
 	{
-		criterios = new ArrayList<>();
+		criteriosFiltrado = new ArrayList<>();
+		criteriosOrdenamiento = new ArrayList<>();
 	}
 	
-	public static void agregarPredefinidos(List<Criterio> criteriosNuevos)
+	public static void agregarCriteriosFiltradoPredefinidos(List<CriterioFiltrado> criteriosFiltradoNuevos)
 	{
-		criterios.addAll(criteriosNuevos);
+		criteriosFiltrado.addAll(criteriosFiltradoNuevos);
 	}
 	
+	public static void agregarCriteriosOrdenamientoPredefinidos(List<CriterioOrdenamiento> criteriosOrdenamientoNuevos)
+	{
+		criteriosOrdenamiento.addAll(criteriosOrdenamientoNuevos);
+	}
+	
+		
 	
 	//PROPIEDADES
-	public static void setCriterios(List<Criterio> criteriosNuevos)
-	{
-		criterios = criteriosNuevos;
+	public static List<CriterioFiltrado> getCriteriosFiltrado() {
+		return criteriosFiltrado;
 	}
-	public static List<Criterio> getCriterios() {
-		
-		return criterios;
+
+	public static void setCriteriosFiltrado(List<CriterioFiltrado> criteriosFiltrado) {
+		RepositorioCriterios.criteriosFiltrado = criteriosFiltrado;
+	}
+
+	public static List<CriterioOrdenamiento> getCriteriosOrdenamiento() {
+		return criteriosOrdenamiento;
+	}
+
+	public static void setCriteriosOrdenamiento(List<CriterioOrdenamiento> criteriosOrdenamiento) {
+		RepositorioCriterios.criteriosOrdenamiento = criteriosOrdenamiento;
 	}
 }

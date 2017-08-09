@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import negocio.dominio.Empresa;
+import negocio.dominio.excepciones.FuenteInvalidaException;
 import negocio.dominio.excepciones.NoSePuedeAgregarCuentaException;
 import negocio.dominio.manejoArchivos.fuente.Fuente;
 import negocio.dominio.manejoArchivos.parser.Parser;
@@ -13,7 +14,7 @@ public class Importador
 	private Fuente fuente;
 	private Parser parser;
 	
-	public void obtenerDatos(String ruta)
+	public void obtenerDatos(String ruta) throws FuenteInvalidaException
 	{
 		fuente.leerDatos(ruta);
 	}

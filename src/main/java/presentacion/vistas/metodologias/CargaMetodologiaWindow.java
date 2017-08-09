@@ -1,22 +1,21 @@
 package presentacion.vistas.metodologias;
 
 import org.uqbar.arena.layout.ColumnLayout;
-import org.uqbar.arena.layout.VerticalLayout;
+import org.uqbar.arena.layout.HorizontalLayout;
 import org.uqbar.arena.widgets.Button;
 import org.uqbar.arena.widgets.GroupPanel;
 import org.uqbar.arena.widgets.Label;
-import org.uqbar.arena.widgets.NumericField;
 import org.uqbar.arena.widgets.Panel;
-import org.uqbar.arena.widgets.Selector;
 import org.uqbar.arena.widgets.TextBox;
 import org.uqbar.arena.widgets.tables.Column;
 import org.uqbar.arena.widgets.tables.Table;
 import org.uqbar.arena.windows.Dialog;
 import org.uqbar.arena.windows.WindowOwner;
 
-import negocio.dominio.Indicador;
-import negocio.dominio.condiciones.Condicion;
-import negocio.dominio.condiciones.criterios.Criterio;
+import negocio.dominio.condiciones.CondicionFiltrado;
+import negocio.dominio.condiciones.CondicionOrdenamiento;
+import presentacion.vistas.metodologias.condiciones.CargaCondicionFiltradoWindow;
+import presentacion.vistas.metodologias.condiciones.CargaCondicionOrdenamientoWindow;
 import presentacion.vm.metodologias.CargaMetodologiaVM;
 
 
@@ -33,52 +32,42 @@ public class CargaMetodologiaWindow extends Dialog<CargaMetodologiaVM>
 	{
 		setTitle("Metodologias");
 		
-		panelPrincipal.setLayout(new VerticalLayout());
-		
 		GroupPanel panelMetodologia = new GroupPanel(panelPrincipal);
 		panelMetodologia.setTitle("Agregar metodologia");
-		panelMetodologia.setLayout(new VerticalLayout());
 		
 		Panel panelNombre = new Panel(panelMetodologia);
 		panelNombre.setLayout(new ColumnLayout(2));
+		
 		new Label(panelNombre).setText("(*) Nombre:");
 		new TextBox(panelNombre).setWidth(200).bindValueToProperty("nombreMetodologia");
 		
+		
+		//CONDICIONES
 		GroupPanel panelCondiciones = new GroupPanel(panelMetodologia);
-		panelCondiciones.setTitle(" Agregar condiciones");
-		panelCondiciones.setLayout(new ColumnLayout(2));
+		panelCondiciones.setTitle("Agregar condiciones");
 		
-		new Label(panelCondiciones).setText("(*) Indicador:");
-		Selector<Indicador> comboIndicador = new Selector<Indicador>(panelCondiciones);
-		comboIndicador.setWidth(200);
-		comboIndicador.bindValueToProperty("indicadorSeleccionado");
-		comboIndicador.bindItemsToProperty("indicadores");
-		
-		new Label(panelCondiciones).setText("(*) Criterio:");
-		Selector<Criterio> comboCriterio = new Selector<Criterio>(panelCondiciones);
-		comboCriterio.setWidth(200);
-		comboCriterio.bindValueToProperty("criterioSeleccionado");
-		comboCriterio.bindItemsToProperty("criterios");
-				
-		new Label(panelCondiciones).setText("Valor:");
-		new NumericField(panelCondiciones).setWidth(200).bindValueToProperty("valor");
-		
-		new Label(panelCondiciones).setText("(*) Ultimos N periodos a aplicar:");
-		new NumericField(panelCondiciones).setWidth(200).bindValueToProperty("cantidadPeriodos");
-		
-		new Label(panelCondiciones).setText("Prioridad de orden:");
-		new NumericField(panelCondiciones).setWidth(200).bindValueToProperty("prioridad");
-		
-		new Button(panelCondiciones).setCaption("Agregar").onClick(() -> this.getModelObject().agregarCondicion()); 
+		Panel panelBotonFiltro = new Panel(panelCondiciones);
+		panelBotonFiltro.setLayout(new HorizontalLayout());
+		new Button(panelBotonFiltro).setCaption("Condicion de filtrado").onClick(() -> new CargaCondicionFiltradoWindow(this, getModelObject()).open());
 	
-		Table<Condicion> tablaCondiciones = new Table<>(panelPrincipal, Condicion.class).setNumberVisibleRows(5);
-		tablaCondiciones.bindItemsToProperty("condiciones");
-		new Column<>(tablaCondiciones).setTitle("Criterio").bindContentsToProperty("criterio");
-		new Column<>(tablaCondiciones).setTitle("Indicador Que Utiliza").bindContentsToProperty("indicador");
-		new Column<>(tablaCondiciones).setTitle("Valor").bindContentsToProperty("valor");
-		new Column<>(tablaCondiciones).setTitle("Cantidad de periodos que aplica").bindContentsToProperty("cantidadPeriodos");
-		new Column<>(tablaCondiciones).setTitle("Prioridad").bindContentsToProperty("prioridad");
+		Table<CondicionFiltrado> tablaCondFiltro = new Table<>(panelCondiciones, CondicionFiltrado.class).setNumberVisibleRows(5);
+		tablaCondFiltro.bindItemsToProperty("condicionesFiltrado");
+		new Column<>(tablaCondFiltro).setTitle("Criterio").bindContentsToProperty("criterioFiltrado");
+		new Column<>(tablaCondFiltro).setTitle("Indicador Que Utiliza").bindContentsToProperty("indicador");
+		new Column<>(tablaCondFiltro).setTitle("Valor").bindContentsToProperty("valor");
+		new Column<>(tablaCondFiltro).setTitle("Cantidad de periodos que aplica").bindContentsToProperty("cantidadPeriodos");
 		
+		
+		Panel panelBotonOrdenamiento = new Panel(panelCondiciones);
+		panelBotonOrdenamiento.setLayout(new HorizontalLayout());
+		new Button(panelBotonOrdenamiento).setCaption("Condicion de ordenamiento").onClick(() -> new CargaCondicionOrdenamientoWindow(this, getModelObject()).open());
+		
+		Table<CondicionOrdenamiento> tablaCondOrdenamiento = new Table<>(panelCondiciones, CondicionOrdenamiento.class).setNumberVisibleRows(5);
+		tablaCondOrdenamiento.bindItemsToProperty("condicionesOrdenamiento");
+		new Column<>(tablaCondOrdenamiento).setTitle("Criterio").bindContentsToProperty("criterioOrdenamiento");
+		new Column<>(tablaCondOrdenamiento).setTitle("Indicador Que Utiliza").bindContentsToProperty("indicador");
+		new Column<>(tablaCondOrdenamiento).setTitle("Cantidad de periodos que aplica").bindContentsToProperty("cantidadPeriodos");
+		new Column<>(tablaCondOrdenamiento).setTitle("Prioridad").bindContentsToProperty("prioridad");	
 	}
 
 	@Override

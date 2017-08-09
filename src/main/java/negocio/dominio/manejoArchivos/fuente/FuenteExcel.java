@@ -20,7 +20,7 @@ public class FuenteExcel implements Fuente
 	private List<String> datos = new ArrayList<>();
 	
 	@Override
-	public void leerDatos(String ruta) 
+	public void leerDatos(String ruta) throws FuenteInvalidaException 
 	{
 		Sheet hoja = null;
 		

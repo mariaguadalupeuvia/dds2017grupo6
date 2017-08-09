@@ -1,7 +1,6 @@
 package presentacion.vistas.metodologias;
 
-import org.uqbar.arena.layout.ColumnLayout;
-import org.uqbar.arena.layout.VerticalLayout;
+import org.uqbar.arena.layout.HorizontalLayout;
 import org.uqbar.arena.widgets.Button;
 import org.uqbar.arena.widgets.GroupPanel;
 import org.uqbar.arena.widgets.Label;
@@ -28,38 +27,45 @@ public class MetodologiaWindow extends SimpleWindow<MetodologiaVM>
 	@Override
 	protected void createFormPanel(Panel panelPrincipal) 
 	{
-		panelPrincipal.setLayout(new VerticalLayout());
-		
 		setTitle("Metodologias");
-		GroupPanel panelFiltrado = new GroupPanel(panelPrincipal);
-		panelFiltrado.setTitle("Aplicar");
-		panelFiltrado.setLayout(new ColumnLayout(2));
 		
-		new Label(panelFiltrado).setText("Metodologia");
-		Selector<Metodologia> comboMetodologia = new Selector<Metodologia>(panelFiltrado);
+		GroupPanel panelOpciones = new GroupPanel(panelPrincipal);
+		panelOpciones.setTitle("Opciones");
+		Panel panelLabels = new Panel(panelOpciones);
+		panelLabels.setLayout(new HorizontalLayout());
+		new Label(panelLabels).setText("Seleccione una metodologia:              ");
+		Selector<Metodologia> comboMetodologia = new Selector<Metodologia>(panelLabels);
 		comboMetodologia.setWidth(200);
 		comboMetodologia.bindValueToProperty("metodologiaSeleccionada");
 		comboMetodologia.bindItemsToProperty("metodologias");
+		Panel panelBotones = new Panel(panelOpciones);
+		panelBotones.setLayout(new HorizontalLayout());
+		new Button(panelBotones).setCaption("Aplicar").onClick(this::aplicarMetodologia).setWidth(90);
+		new Button(panelBotones).setCaption("Agregar metodologia").onClick(this::agregarMetodologia).setWidth(200);
 		
-		new Button(panelFiltrado).setCaption("Aplicar").onClick(this::aplicarMetodologia);
 		
 		Table<Empresa> tablaEmpresasEvaluadas = new Table<>(panelPrincipal, Empresa.class).setNumberVisibleRows(5);
 		tablaEmpresasEvaluadas.bindItemsToProperty("empresasEvaluadas");
-		
 		new Column<>(tablaEmpresasEvaluadas).setTitle("Se puede invertir en").bindContentsToProperty("nombre");
-
+		
+		Table<EmpresaNoEvaluada> tablaEmpresasNoEvaluadas = new Table<>(panelPrincipal, EmpresaNoEvaluada.class).setNumberVisibleRows(5);
+		tablaEmpresasNoEvaluadas.bindItemsToProperty("empresasNoEvaluadas");
+		new Column<>(tablaEmpresasNoEvaluadas).setTitle("Nombre empresa:").bindContentsToProperty("empresa.nombre");
+		new Column<>(tablaEmpresasNoEvaluadas).setTitle("Motivo:").bindContentsToProperty("motivo");
 	}
 	
 	@Override
-	protected void addActions(Panel botonera) 
-	{
-		new Button(botonera).setCaption("Agregar metodologia").onClick(() -> new CargaMetodologiaWindow(this).open());
-		
-		ObservableUtils.firePropertyChanged(getModelObject(), "metodologias");
-	}
+	protected void addActions(Panel botonera) { }
 	
 	private void aplicarMetodologia() 
 	{	
 		getModelObject().aplicarMetodologia();	
+	}
+	
+	private void agregarMetodologia()
+	{
+		new CargaMetodologiaWindow(this).open();
+		
+		ObservableUtils.firePropertyChanged(getModelObject(), "metodologias");
 	}
 }

@@ -15,7 +15,7 @@ public class FuenteTxt implements Fuente
 	private List<String> datos = new ArrayList<>();
 	
 	@Override
-	public void leerDatos(String ruta)
+	public void leerDatos(String ruta) throws FuenteInvalidaException
 	{
 		try 
 		{
