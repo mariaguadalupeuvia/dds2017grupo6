@@ -14,6 +14,8 @@ import org.uqbar.commons.model.ObservableUtils;
 
 import negocio.dominio.Empresa;
 import negocio.dominio.Metodologia;
+import negocio.dominio.evaluacionEmpresas.EmpresaNoFiltrada;
+import negocio.dominio.evaluacionEmpresas.ParEmpresasNoComparadas;
 import presentacion.vm.metodologias.MetodologiaVM;
 
 @SuppressWarnings("serial")
@@ -42,16 +44,34 @@ public class MetodologiaWindow extends SimpleWindow<MetodologiaVM>
 		panelBotones.setLayout(new HorizontalLayout());
 		new Button(panelBotones).setCaption("Aplicar").onClick(this::aplicarMetodologia).setWidth(90);
 		new Button(panelBotones).setCaption("Agregar metodologia").onClick(this::agregarMetodologia).setWidth(200);
+		new Label(panelPrincipal).setText("");
 		
 		
+		Panel panelEvaluadas = new Panel(panelPrincipal);
+		panelEvaluadas.setLayout(new HorizontalLayout());
+		new Label(panelEvaluadas).setText("Empresas correctamente evaluadas");
 		Table<Empresa> tablaEmpresasEvaluadas = new Table<>(panelPrincipal, Empresa.class).setNumberVisibleRows(5);
 		tablaEmpresasEvaluadas.bindItemsToProperty("empresasEvaluadas");
 		new Column<>(tablaEmpresasEvaluadas).setTitle("Se puede invertir en").bindContentsToProperty("nombre");
+		new Label(panelPrincipal).setText("");
 		
-		Table<EmpresaNoEvaluada> tablaEmpresasNoEvaluadas = new Table<>(panelPrincipal, EmpresaNoEvaluada.class).setNumberVisibleRows(5);
-		tablaEmpresasNoEvaluadas.bindItemsToProperty("empresasNoEvaluadas");
-		new Column<>(tablaEmpresasNoEvaluadas).setTitle("Nombre empresa:").bindContentsToProperty("empresa.nombre");
-		new Column<>(tablaEmpresasNoEvaluadas).setTitle("Motivo:").bindContentsToProperty("motivo");
+		
+		Panel panelnf = new Panel(panelPrincipal);
+		panelnf.setLayout(new HorizontalLayout());
+		new Label(panelnf).setText("Empresas no filtradas");
+		Table<EmpresaNoFiltrada> tablaEmpresasNoFiltradas = new Table<>(panelPrincipal, EmpresaNoFiltrada.class).setNumberVisibleRows(5);
+		tablaEmpresasNoFiltradas.bindItemsToProperty("empresasNoFiltradas");
+		new Column<>(tablaEmpresasNoFiltradas).setTitle("Nombre empresa:").bindContentsToProperty("empresa.nombre");
+		new Column<>(tablaEmpresasNoFiltradas).setTitle("Motivo:").bindContentsToProperty("motivo");
+		
+		Panel panelnc = new Panel(panelPrincipal);
+		panelnc.setLayout(new HorizontalLayout());
+		new Label(panelnc).setText("Empresas no comparadas");
+		Table<ParEmpresasNoComparadas> tablaEmpresasNoComparadas = new Table<>(panelPrincipal, ParEmpresasNoComparadas.class).setNumberVisibleRows(5);
+		tablaEmpresasNoComparadas.bindItemsToProperty("empresasNoComparadas");
+		new Column<>(tablaEmpresasNoComparadas).setTitle("Nombre empresa 1:").bindContentsToProperty("unaEmpresa.nombre");
+		new Column<>(tablaEmpresasNoComparadas).setTitle("Nombre empresa 2:").bindContentsToProperty("otraEmpresa.nombre");
+		new Column<>(tablaEmpresasNoComparadas).setTitle("Motivo:").bindContentsToProperty("motivo");
 	}
 	
 	@Override
