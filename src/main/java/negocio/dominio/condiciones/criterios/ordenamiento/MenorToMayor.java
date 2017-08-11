@@ -43,6 +43,6 @@ public class MenorToMayor extends CriterioOrdenamiento {
 	
 	@Override
 	public String toString() {
-		return "Ordenamiento: De mayor a menor";
+		return "Ordenamiento: De menor a mayor";
 	}
 }
